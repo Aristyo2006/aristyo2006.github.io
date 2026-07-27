@@ -57,15 +57,15 @@ import featuredImg from '@assets/images/LELEMETER.jpg';
     </div>
 
     <!-- Zine Centerfold Layout (Broken grid, 80px overlapping) -->
-    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 items-stretch">
+    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 items-start">
       
       <!-- Project Image Print (Left / Center - Slanted Geometry, 5° left) -->
-      <div class="lg:col-span-8 relative z-0 group min-h-[250px] sm:min-h-[300px]">
+      <div class="lg:col-span-8 relative z-0 group">
         
         <!-- Layer 1: Backing Paper (skew-5-left) -->
-        <div class="absolute inset-0 bg-[#090909] border border-[var(--color-steel-black)] -translate-x-1 sm:-translate-x-3 -translate-y-1 sm:-translate-y-3 sm:skew-5-left z-0" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-[#090909] border border-[var(--color-steel-black)] -translate-x-1.5 sm:-translate-x-3 -translate-y-1.5 sm:-translate-y-3 sm:skew-5-left z-0" aria-hidden="true"></div>
         <!-- Layer 2: Colored Backing Paper (skew-5-left) -->
-        <div class="absolute inset-0 bg-[var(--color-burnt-crimson)] translate-x-1 sm:translate-x-3 translate-y-1 sm:translate-y-3 sm:skew-5-left z-10" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-[var(--color-burnt-crimson)] translate-x-1.5 sm:translate-x-3 translate-y-1.5 sm:translate-y-3 sm:skew-5-left z-10" aria-hidden="true"></div>
         
         <!-- Layer 3: Main Photo print (skew-5-left) -->
         <div class="relative bg-black border-2 border-[var(--color-steel-black)] overflow-hidden grain-overlay flex items-center justify-center sm:skew-5-left z-20 group">
