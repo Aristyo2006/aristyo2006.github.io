@@ -48,27 +48,27 @@ import featuredImg from '@assets/images/LELEMETER.jpg';
   <div class="mx-auto max-w-7xl px-6 relative z-10">
 
     <!-- Section Header (High impact layout) -->
-    <div class="mb-20 flex items-baseline gap-4">
+    <div class="mb-12 sm:mb-20 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
       <span class="font-mono text-xs tracking-wider text-[var(--color-burnt-crimson)]">CH.03 / SELECTED</span>
       <h2 id="featured-heading" class="font-bebas text-5xl tracking-widest text-[var(--color-chalk-white)] sm:text-6xl cmyk-bleed">
         Featured
       </h2>
-      <div class="h-[1px] flex-1 bg-[var(--color-burnt-crimson)]/30 ml-4"></div>
+      <div class="hidden sm:block h-[1px] flex-1 bg-[var(--color-burnt-crimson)]/30 ml-4"></div>
     </div>
 
     <!-- Zine Centerfold Layout (Broken grid, 80px overlapping) -->
-    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
+    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 items-stretch">
       
       <!-- Project Image Print (Left / Center - Slanted Geometry, 5° left) -->
-      <div class="lg:col-span-8 relative z-0 group min-h-[300px]">
+      <div class="lg:col-span-8 relative z-0 group min-h-[250px] sm:min-h-[300px]">
         
         <!-- Layer 1: Backing Paper (skew-5-left) -->
-        <div class="absolute inset-0 bg-[#090909] border border-[var(--color-steel-black)] -translate-x-3 -translate-y-3 skew-5-left z-0" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-[#090909] border border-[var(--color-steel-black)] -translate-x-1 sm:-translate-x-3 -translate-y-1 sm:-translate-y-3 sm:skew-5-left z-0" aria-hidden="true"></div>
         <!-- Layer 2: Colored Backing Paper (skew-5-left) -->
-        <div class="absolute inset-0 bg-[var(--color-burnt-crimson)] translate-x-3 translate-y-3 skew-5-left z-10" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-[var(--color-burnt-crimson)] translate-x-1 sm:translate-x-3 translate-y-1 sm:translate-y-3 sm:skew-5-left z-10" aria-hidden="true"></div>
         
         <!-- Layer 3: Main Photo print (skew-5-left) -->
-        <div class="relative bg-black border-2 border-[var(--color-steel-black)] overflow-hidden grain-overlay flex items-center justify-center skew-5-left z-20 group">
+        <div class="relative bg-black border-2 border-[var(--color-steel-black)] overflow-hidden grain-overlay flex items-center justify-center sm:skew-5-left z-20 group">
           <Image src={featuredImg} width={800} format="webp" quality={85} loading="eager" alt="Lelemeter Project" class="block w-full h-auto object-cover opacity-80" />
         </div>
 
@@ -77,18 +77,18 @@ import featuredImg from '@assets/images/LELEMETER.jpg';
       </div>
 
       <!-- Details Card (Right / Overlapping by 80px on desktop - Slanted Geometry, 3° right) -->
-      <div class="lg:col-span-5 lg:-ml-20 lg:mt-16 relative z-10 flex flex-col justify-between reveal reveal-right">
+      <div class="lg:col-span-5 lg:-ml-20 lg:mt-16 mt-8 relative z-10 flex flex-col justify-between reveal reveal-right">
         
         <!-- Layer 1: Backing Paper (skew-3-right) -->
-        <div class="absolute inset-0 bg-[#090909] border border-gray-800 -translate-x-2 -translate-y-2 skew-3-right z-0" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-[#090909] border border-gray-800 -translate-x-1 sm:-translate-x-2 -translate-y-1 sm:-translate-y-2 sm:skew-3-right z-0" aria-hidden="true"></div>
         <!-- Layer 2: Colored Backing Paper (skew-3-right) -->
-        <div class="absolute inset-0 bg-[var(--color-red-blast)] translate-x-2 translate-y-2 skew-3-right z-10" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-[var(--color-red-blast)] translate-x-1 sm:translate-x-2 translate-y-1 sm:translate-y-2 sm:skew-3-right z-10" aria-hidden="true"></div>
 
         <!-- Layer 3: Main Card Panel (skew-3-right) -->
-        <div class="relative border-4 border-[var(--color-chalk-white)] bg-[var(--color-steel-black)] p-8 hard-shadow-lg transition-transform duration-300 z-20 skew-3-right">
+        <div class="relative border-4 border-[var(--color-chalk-white)] bg-[var(--color-steel-black)] p-5 sm:p-8 hard-shadow-lg transition-transform duration-300 z-20 sm:skew-3-right">
           
           <!-- Mock checkout receipt / shipping label zine artifact (Bevel Geometry) -->
-          <div class="absolute -right-6 -top-12 rotate-[8deg] bg-[var(--color-chalk-white)] text-[var(--color-void-black)] p-4 border border-gray-400 font-mono text-[8px] max-w-[140px] leading-tight select-none z-30 shadow-md bevel-brutalist">
+          <div class="absolute right-2 sm:-right-6 -top-10 sm:-top-12 rotate-[5deg] sm:rotate-[8deg] bg-[var(--color-chalk-white)] text-[var(--color-void-black)] p-3 sm:p-4 border border-gray-400 font-mono text-[8px] max-w-[120px] sm:max-w-[140px] leading-tight select-none z-30 shadow-md bevel-brutalist">
             <div class="text-center font-bold border-b border-[var(--color-void-black)] pb-1.5 mb-1.5">AR.wrks</div>
             <p>ITEM: ARCHIVE_01</p>
             <p>CODE: SP-03-FEATURED</p>
