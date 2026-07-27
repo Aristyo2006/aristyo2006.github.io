@@ -1,0 +1,301 @@
+<script>
+  const w = window as any;
+  if (w.__siteScriptsCleanup) {
+    w.__siteScriptsCleanup();
+  }
+  if (w.__siteScriptsPageLoadHandler) {
+    document.removeEventListener('astro:page-load', w.__siteScriptsPageLoadHandler);
+  }
+
+  function initSiteScripts() {
+    if (w.__siteScriptsCleanup) {
+      w.__siteScriptsCleanup();
+    }
+
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const cleanupFns: Array<() => void> = [];
+
+    // Hard-Lock Preloader: tracks ACTUAL DOM <img> elements — loader only closes when every real image is loaded
+    const loader = document.getElementById('global-loader');
+    const progressBar = document.getElementById('loader-progress-bar');
+    const percentCounter = document.getElementById('loader-percent-counter');
+
+    if (loader) {
+      const allImgs = Array.from(document.querySelectorAll('img'));
+      const total = allImgs.length || 1;
+      let loaded = 0;
+
+      const updateProgress = () => {
+        loaded++;
+        const pct = Math.min(100, Math.round((loaded / total) * 100));
+        if (progressBar) progressBar.style.width = `${pct}%`;
+        if (percentCounter) percentCounter.textContent = `${pct}%`;
+      };
+
+      const dismissLoader = () => {
+        if (progressBar) progressBar.style.width = '100%';
+        if (percentCounter) percentCounter.textContent = '100%';
+        const hideTimer = setTimeout(() => {
+          loader.classList.add('loaded');
+        }, 150);
+        cleanupFns.push(() => clearTimeout(hideTimer));
+      };
+
+      // Track each real DOM <img> element
+      const imgPromises = allImgs.map((img) => {
+        return new Promise<void>((resolve) => {
+          if (img.complete && img.naturalWidth > 0) {
+            // Already loaded (cached)
+            updateProgress();
+            resolve();
+          } else {
+            img.addEventListener('load', () => { updateProgress(); resolve(); }, { once: true });
+            img.addEventListener('error', () => { updateProgress(); resolve(); }, { once: true });
+          }
+        });
+      });
+
+      Promise.allSettled(imgPromises).then(dismissLoader);
+
+      // Safety timeout — never hang forever (5s max)
+      const fallback = setTimeout(() => {
+        if (!loader.classList.contains('loaded')) {
+          dismissLoader();
+        }
+      }, 5000);
+      cleanupFns.push(() => clearTimeout(fallback));
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    if (reveals.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      for (const el of reveals) observer.observe(el);
+      cleanupFns.push(() => observer.disconnect());
+    }
+
+    // Magnetic buttons
+    if (!prefersReducedMotion) {
+      const magnets = document.querySelectorAll('[data-magnetic]');
+
+      for (const el of magnets) {
+        const target = el as HTMLElement;
+        const strength = parseFloat(target.getAttribute('data-magnetic') ?? '0.3');
+        let latestEvent: MouseEvent | null = null;
+        let rafPending = false;
+
+        target.addEventListener('mousemove', (evt) => {
+          latestEvent = evt as MouseEvent;
+          if (rafPending) return;
+
+          rafPending = true;
+          requestAnimationFrame(() => {
+            if (!latestEvent) return;
+            const rect = target.getBoundingClientRect();
+            const x = (latestEvent.clientX - rect.left - rect.width / 2) * strength;
+            const y = (latestEvent.clientY - rect.top - rect.height / 2) * strength;
+            target.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+            rafPending = false;
+          });
+        }, { passive: true, signal });
+
+        target.addEventListener('mouseleave', () => {
+          target.style.transform = 'translate3d(0, 0, 0)';
+          latestEvent = null;
+          rafPending = false;
+        }, { signal });
+      }
+    }
+
+    // Tilt cards
+    if (!prefersReducedMotion) {
+      const cards = document.querySelectorAll('[data-tilt]');
+
+      for (const card of cards) {
+        const target = card as HTMLElement;
+        let latestEvent: MouseEvent | null = null;
+        let rafPending = false;
+
+        target.addEventListener('mousemove', (evt) => {
+          latestEvent = evt as MouseEvent;
+          if (rafPending) return;
+
+          rafPending = true;
+          requestAnimationFrame(() => {
+            if (!latestEvent) return;
+            const rect = target.getBoundingClientRect();
+            const xPct = (latestEvent.clientX - rect.left) / rect.width;
+            const yPct = (latestEvent.clientY - rect.top) / rect.height;
+            const rotateY = (xPct - 0.5) * 10;
+            const rotateX = (0.5 - yPct) * 10;
+            target.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
+            rafPending = false;
+          });
+        }, { passive: true, signal });
+
+        target.addEventListener('mouseleave', () => {
+          target.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+          latestEvent = null;
+          rafPending = false;
+        }, { signal });
+      }
+    }
+
+    // Progress bar
+    const bar = document.getElementById('reading-progress-bar');
+    if (bar) {
+      const progressBar = bar as HTMLElement;
+      progressBar.style.width = '100%';
+      progressBar.style.transformOrigin = '0 50%';
+      progressBar.style.transform = 'scaleX(0)';
+
+      let rafPending = false;
+      const updateProgress = () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+        const progress = Math.min(scrollTop / docHeight, 1);
+        progressBar.style.transform = `scaleX(${progress})`;
+        rafPending = false;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(updateProgress);
+      }, { passive: true, signal });
+      updateProgress();
+    }
+
+    // Animated counters
+    const counters = document.querySelectorAll('[data-counter]');
+    if (counters.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const target = parseInt(el.getAttribute('data-counter') ?? '0', 10);
+              const duration = 1500;
+              const start = performance.now();
+              let counterRaf = 0;
+
+              function update(now: number) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(eased * target);
+                el.textContent = String(current);
+                if (progress < 1) {
+                  counterRaf = requestAnimationFrame(update);
+                } else {
+                  el.textContent = String(target);
+                }
+              }
+
+              counterRaf = requestAnimationFrame(update);
+              cleanupFns.push(() => cancelAnimationFrame(counterRaf));
+              observer.unobserve(el);
+            }
+          }
+        },
+        { threshold: 0.5 }
+      );
+
+      for (const el of counters) observer.observe(el);
+      cleanupFns.push(() => observer.disconnect());
+    }
+
+    // Skill progress bars
+    const bars = document.querySelectorAll('.skill-progress');
+    if (bars.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const target = el.getAttribute('data-progress') ?? '0';
+              const timer = setTimeout(() => {
+                el.style.width = `${target}%`;
+              }, 200);
+              cleanupFns.push(() => clearTimeout(timer));
+              observer.unobserve(el);
+            }
+          }
+        },
+        { threshold: 0.3 }
+      );
+
+      for (const el of bars) observer.observe(el);
+      cleanupFns.push(() => observer.disconnect());
+    }
+
+    // Cursor spotlight
+    const hero = document.getElementById('hero');
+    const spotlight = document.getElementById('cursor-spotlight') as HTMLElement | null;
+    if (hero && spotlight && !prefersReducedMotion) {
+      let latestEvent: MouseEvent | null = null;
+      let rafPending = false;
+      spotlight.style.left = '0';
+      spotlight.style.top = '0';
+      spotlight.style.willChange = 'transform, opacity';
+
+      hero.addEventListener('mousemove', (evt) => {
+        latestEvent = evt as MouseEvent;
+        spotlight.style.opacity = '1';
+        if (rafPending) return;
+
+        rafPending = true;
+        requestAnimationFrame(() => {
+          if (!latestEvent) return;
+          spotlight.style.transform = `translate3d(${latestEvent.clientX}px, ${latestEvent.clientY}px, 0) translate(-50%, -50%)`;
+          rafPending = false;
+        });
+      }, { passive: true, signal });
+
+      hero.addEventListener('mouseleave', () => {
+        spotlight.style.opacity = '0';
+        latestEvent = null;
+        rafPending = false;
+      }, { signal });
+    }
+
+    // Random hover rotation
+    const angles = [-2, -1.5, -1, 1, 1.5, 2];
+    document.addEventListener('mouseenter', (e) => {
+      const target = e.target as HTMLElement | null;
+      if (!target || typeof target.closest !== 'function') return;
+
+      const hoverEl = target.closest('.hover-snap, .hover-snap-reverse') as HTMLElement | null;
+      if (!hoverEl) return;
+
+      const randomAngle = angles[Math.floor(Math.random() * angles.length)];
+      hoverEl.style.setProperty('--hover-rot', `${randomAngle}deg`);
+    }, { capture: true, signal });
+
+    w.__siteScriptsCleanup = () => {
+      abortController.abort();
+      for (const cleanup of cleanupFns) cleanup();
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSiteScripts, { once: true });
+  } else {
+    initSiteScripts();
+  }
+  w.__siteScriptsPageLoadHandler = initSiteScripts;
+  document.addEventListener('astro:page-load', w.__siteScriptsPageLoadHandler);
+</script>

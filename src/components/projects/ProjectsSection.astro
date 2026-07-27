@@ -1,0 +1,193 @@
+---
+import { Image } from 'astro:assets';
+import project01Img from '@assets/images/Project01.png';
+import project02Img from '@assets/images/Project02.jpg';
+import project03Img from '@assets/images/Project03.jpg';
+
+const projects = [
+  {
+    title: 'Coming Soon...',
+    category: 'design',
+    description: 'Stay tuned.',
+    tags: ['Coming Soon'],
+    aspect: 'aspect-[3/4]',
+  },
+  {
+    title: 'Timeless Waters',
+    category: 'photo',
+    description: 'A river that has carried stories since the colonial era, quietly flowing through generations while life along its banks continues to unfold.',
+    tags: ['DSLR', 'Storytelling', 'Landscape'],
+    aspect: 'aspect-square',
+    image: project02Img,
+  },
+  {
+    title: 'Ruang: Who is it really for?',
+    category: 'video',
+    description: 'Award-Winning Documentary Films',
+    tags: ['DaVinci', 'Premiere', 'Color Grade'],
+    aspect: 'aspect-[16/9]',
+    image: project03Img,
+  },
+  {
+    title: 'AR museum',
+    category: 'code',
+    description: 'Augmented reality museum guide app',
+    tags: ['PHP', 'HTML', 'ThreeJS'],
+    aspect: 'aspect-[4/5]',
+    image: project01Img,
+  },
+  {
+    title: 'Coming Soon...',
+    category: 'audio',
+    description: 'Stay tuned.',
+    tags: ['Coming Soon'],
+    aspect: 'aspect-[3/2]',
+  },
+  {
+    title: 'Coming Soon...',
+    category: 'design',
+    description: 'Stay tuned.',
+    tags: ['Coming Soon'],
+    aspect: 'aspect-square',
+  },
+];
+---
+
+<section
+  id="projects"
+  data-scroll-section="projects"
+  class="relative bg-[var(--color-steel-black)]/60 py-28 sm:py-36 overflow-hidden jsr-bg-halftone"
+  aria-labelledby="projects-heading"
+>
+  <!-- Background Graphic -->
+  <div class="absolute inset-0 jsr-bg-halftone opacity-10 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+
+    <!-- Section Header (Graphic layout) -->
+    <div class="mb-20 flex items-baseline gap-4 relative">
+      <div class="absolute -inset-2 bg-[var(--color-burnt-crimson)] clip-parallelogram -z-10 opacity-30"></div>
+      <span class="font-mono text-xs tracking-wider font-bold text-[var(--color-chalk-white)] bg-[var(--color-red-blast)] px-3 py-1 clip-parallelogram transform -skew-x-6">CH.04 // ARCHIVE</span>
+      <h2 id="projects-heading" class="font-bebas text-6xl tracking-widest text-[var(--color-chalk-white)] sm:text-7xl text-shadow-hard italic transform -skew-x-6">
+        Projects
+      </h2>
+      <div class="h-[2px] flex-1 bg-[var(--color-burnt-crimson)] ml-4"></div>
+    </div>
+
+    <!-- Filter buttons (JSR geometric stubs) -->
+    <div class="mb-16 flex flex-wrap gap-4 reveal reveal-up" role="tablist" aria-label="Project filter">
+      {['All', 'Photo', 'Video', 'Design', 'Code', 'Audio'].map((filter) => (
+        <button
+          class="filter-btn group relative px-6 py-2 font-space text-[12px] font-bold uppercase tracking-widest transition-colors data-[active=true]:bg-[var(--color-red-blast)] data-[active=true]:text-[var(--color-chalk-white)] text-[var(--color-warm-gray)] bg-[var(--color-void-black)] border-2 border-[var(--color-steel-black)] hover:border-[var(--color-chalk-white)] clip-parallelogram hover-snap"
+          data-filter={filter.toLowerCase()}
+          data-active={filter === 'All' ? 'true' : 'false'}
+          role="tab"
+          aria-selected={filter === 'All' ? 'true' : 'false'}
+        >
+          {filter}
+        </button>
+      ))}
+    </div>
+
+    <!-- Asymmetrical Grid (Columns with offset margins & gaps) -->
+    <div class="grid gap-16 sm:grid-cols-2 lg:grid-cols-3 items-start" role="list" aria-label="Projects list">
+      {projects.map((project, index) => {
+        const rot = index % 2 === 0 ? 'rotate-[1.5deg]' : 'rotate-[-1.5deg]';
+        return (
+          <div class={`project-item group relative pb-4 hover-snap ${rot} origin-center ${index % 2 !== 0 ? 'sm:translate-y-12' : ''}`}>
+            
+            <!-- Layer 1: Main content panel -->
+            <article 
+              class={`relative border-2 border-[var(--color-void-black)] bg-[var(--color-void-black)] transition-all duration-300 group-hover:border-[var(--color-chalk-white)] z-10 clip-parallelogram overflow-hidden`}
+              data-category={project.category}
+              role="listitem"
+              data-tilt
+            >
+              <!-- Image block with variable aspect ratio & hover zoom -->
+              <div class={`${project.image ? 'w-full h-auto' : project.aspect} flex items-center justify-center bg-[var(--color-steel-black)] jsr-bg-stripes relative overflow-hidden`}>
+                {project.image ? (
+                  <Image src={project.image} width={500} format="webp" quality={80} loading="eager" alt={project.title} class="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />
+                ) : (
+                  <div class="flex items-center justify-center w-full h-full transition-transform duration-500 group-hover:scale-105">
+                    <span class="font-bebas text-4xl text-[var(--color-void-black)] opacity-80 px-4 text-center transform -skew-x-12">{project.title}</span>
+                  </div>
+                )}
+              </div>
+
+              <!-- Info slide on hover -->
+              <div class="translate-y-full absolute inset-x-0 bottom-0 bg-[var(--color-void-black)]/95 backdrop-blur-sm p-6 transition-transform duration-300 group-hover:translate-y-0 z-30 flex flex-col justify-end" aria-hidden="true">
+                <h4 class="font-bebas text-2xl tracking-wider text-[var(--color-chalk-white)] transform -skew-x-6 italic">{project.title}</h4>
+                <p class="mt-2 font-inter text-xs text-[var(--color-warm-gray)] font-bold">{project.description}</p>
+                <div class="mt-4 flex flex-wrap gap-3">
+                  {project.tags.map((tag, i) => {
+                    const rot = i % 2 === 0 ? 'rotate-[3deg]' : 'rotate-[-3deg]';
+                    return (
+                      <div class={`${rot} hover-snap`}>
+                        <span class="border-2 border-[var(--color-red-blast)] px-2 py-1 font-space font-bold text-[9px] text-[var(--color-chalk-white)] block">
+                          {tag}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </article>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  const w = window as any;
+  if (w.__projectFiltersCleanup) {
+    w.__projectFiltersCleanup();
+  }
+  if (w.__projectFiltersPageLoadHandler) {
+    document.removeEventListener('astro:page-load', w.__projectFiltersPageLoadHandler);
+  }
+
+  function initProjectFilters() {
+    if (w.__projectFiltersCleanup) {
+      w.__projectFiltersCleanup();
+    }
+
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        filterButtons.forEach((b) => {
+          b.setAttribute('data-active', 'false');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.setAttribute('data-active', 'true');
+        btn.setAttribute('aria-selected', 'true');
+
+        projectItems.forEach((item) => {
+          const article = item.querySelector('article');
+          if (!article) return;
+          const projCat = article.getAttribute('data-category');
+          (item as HTMLElement).style.display = filter === 'all' || projCat === filter ? '' : 'none';
+        });
+      }, { signal });
+    });
+
+    w.__projectFiltersCleanup = () => {
+      abortController.abort();
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjectFilters, { once: true });
+  } else {
+    initProjectFilters();
+  }
+  w.__projectFiltersPageLoadHandler = initProjectFilters;
+  document.addEventListener('astro:page-load', w.__projectFiltersPageLoadHandler);
+</script>

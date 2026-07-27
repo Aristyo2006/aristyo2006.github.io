@@ -1,0 +1,290 @@
+<section
+  id="skills"
+  data-scroll-section="skills"
+  class="relative bg-[var(--color-steel-black)]/60 py-28 sm:py-36 overflow-hidden jsr-bg-stripes"
+  aria-labelledby="skills-heading"
+>
+  <!-- Background Graphic -->
+  <div class="absolute inset-0 jsr-bg-stripes opacity-10 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+
+    <!-- Section Header (Medium visual rhythm) -->
+    <div class="mb-20 flex items-baseline gap-4 relative">
+      <div class="absolute -inset-2 bg-[var(--color-burnt-crimson)] clip-parallelogram -z-10 opacity-30"></div>
+      <span class="font-mono text-xs tracking-wider font-bold text-[var(--color-void-black)] bg-[var(--color-ember-orange)] px-3 py-1 clip-parallelogram transform -skew-x-6">CH.02 // TOOLS</span>
+      <h2 id="skills-heading" class="font-bebas text-6xl tracking-widest text-[var(--color-chalk-white)] sm:text-7xl text-shadow-hard italic transform -skew-x-6">
+        Skills
+      </h2>
+      <div class="h-[2px] flex-1 bg-[var(--color-burnt-crimson)] ml-4"></div>
+    </div>
+
+    <!-- Scattered Skill Cards Grid (Graphic Geometric Blocks) -->
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3 items-start">
+      
+      <!-- Photography -->
+      <div class="relative group hover-snap rotate-[1.5deg] origin-center">
+        <article class="relative border-2 border-[var(--color-chalk-white)] bg-[var(--color-chalk-white)] p-8 clip-parallelogram z-10 transition-transform">
+          
+          <div class="flex items-start justify-between">
+            <h3 class="font-bebas text-3xl tracking-widest text-[var(--color-void-black)] transform -skew-x-6 italic">Photography</h3>
+          </div>
+
+          <p class="mt-4 font-inter text-xs leading-relaxed text-[var(--color-deep-brown)] font-bold">
+            Street, editorial, and product photography. Composition, lighting, post-production.
+          </p>
+
+          <!-- Clean Progress Bar -->
+          <div class="mt-6">
+            <div class="flex items-center justify-between font-mono text-[10px] font-bold tracking-wider mb-2">
+              <span class="text-[var(--color-void-black)]">PROFICIENCY</span>
+              <span class="text-[var(--color-chalk-white)] bg-[var(--color-red-blast)] px-2 py-0.5 clip-parallelogram">92%</span>
+            </div>
+            <div class="w-full bg-[var(--color-steel-black)] h-1 clip-parallelogram" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
+              <div class="bg-[var(--color-red-blast)] h-full" style="width: 92%;"></div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            {['Lightroom', 'Capture One', 'Photoshop'].map((tool, i) => {
+              const rot = i % 2 === 0 ? 'rotate-[3deg]' : 'rotate-[-3deg]';
+              return (
+                <div class={`${rot} hover-snap`}>
+                  <span class="border-2 border-[var(--color-void-black)] px-3 py-1 font-space font-bold text-[10px] text-[var(--color-void-black)] bg-transparent hover:bg-[var(--color-red-blast)] hover:text-[var(--color-chalk-white)] transition-colors block">
+                    {tool}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </article>
+      </div>
+
+      <!-- Videography -->
+      <div class="relative group sm:translate-y-8 hover-snap-reverse rotate-[-1deg] origin-center">
+        <article class="relative border-2 border-[var(--color-red-blast)] bg-[var(--color-void-black)] p-8 clip-parallelogram-reverse z-10 transition-transform">
+          
+          <div class="flex items-start justify-between">
+            <h3 class="font-bebas text-3xl tracking-widest text-[var(--color-chalk-white)] transform -skew-x-6 italic">Videography</h3>
+          </div>
+
+          <p class="mt-4 font-inter text-xs leading-relaxed text-[var(--color-warm-gray)]">
+            Creative direction, filming, editing, color grading. Narrative and commercial work.
+          </p>
+
+          <!-- Clean Progress Bar -->
+          <div class="mt-6">
+            <div class="flex items-center justify-between font-mono text-[10px] font-bold tracking-wider mb-2">
+              <span class="text-[var(--color-chalk-white)]">PROFICIENCY</span>
+              <span class="text-[var(--color-void-black)] bg-[var(--color-burnt-crimson)] px-2 py-0.5 clip-parallelogram-reverse">88%</span>
+            </div>
+            <div class="w-full bg-[var(--color-steel-black)] h-1 clip-parallelogram-reverse" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100">
+              <div class="bg-[var(--color-burnt-crimson)] h-full" style="width: 88%;"></div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            {['Premiere Pro', 'DaVinci', 'After Effects'].map((tool, i) => {
+              const rot = i % 2 === 0 ? 'rotate-[-3deg]' : 'rotate-[3deg]';
+              return (
+                <div class={`${rot} hover-snap`}>
+                  <span class="border-2 border-[var(--color-red-blast)] px-3 py-1 font-space font-bold text-[10px] text-[var(--color-chalk-white)] bg-transparent hover:bg-[var(--color-red-blast)] hover:text-[var(--color-void-black)] transition-colors block">
+                    {tool}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </article>
+      </div>
+
+      <!-- Graphic Design -->
+      <div class="relative group sm:translate-y-16 hover-snap rotate-[2deg] origin-center">
+        <article class="relative border-2 border-[var(--color-void-black)] bg-[var(--color-steel-black)] p-8 clip-parallelogram z-10 transition-transform">
+
+          <div class="flex items-start justify-between">
+            <h3 class="font-bebas text-3xl tracking-widest text-[var(--color-chalk-white)] transform -skew-x-6 italic">Graphic Design</h3>
+          </div>
+
+          <p class="mt-4 font-inter text-xs leading-relaxed text-[var(--color-warm-gray)]">
+            Editorial layouts, branding, posters, digital & print. Brutalist aesthetics.
+          </p>
+
+          <!-- Clean Progress Bar -->
+          <div class="mt-6">
+            <div class="flex items-center justify-between font-mono text-[10px] font-bold tracking-wider mb-2">
+              <span class="text-[var(--color-chalk-white)]">PROFICIENCY</span>
+              <span class="text-[var(--color-void-black)] bg-[var(--color-chalk-white)] px-2 py-0.5 clip-parallelogram">95%</span>
+            </div>
+            <div class="w-full bg-black h-1 clip-parallelogram" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+              <div class="bg-[var(--color-chalk-white)] h-full" style="width: 95%;"></div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            {['Figma', 'Illustrator', 'InDesign'].map((tool, i) => {
+              const rot = i % 2 === 0 ? 'rotate-[3deg]' : 'rotate-[-3deg]';
+              return (
+                <div class={`${rot} hover-snap`}>
+                  <span class="border-2 border-[var(--color-chalk-white)] px-3 py-1 font-space font-bold text-[10px] text-[var(--color-chalk-white)] bg-transparent hover:bg-[var(--color-chalk-white)] hover:text-[var(--color-void-black)] transition-colors block">
+                    {tool}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </article>
+      </div>
+
+      <!-- Programming -->
+      <div class="relative group hover-snap-reverse rotate-[-2deg] origin-center">
+        <article class="relative border-2 border-[var(--color-void-black)] bg-[var(--color-ember-orange)] p-8 clip-parallelogram-reverse z-10 transition-transform">
+          <div class="flex items-start justify-between">
+            <h3 class="font-bebas text-3xl tracking-widest text-[var(--color-void-black)] transform -skew-x-6 italic">Programming</h3>
+          </div>
+
+          <p class="mt-4 font-inter text-xs leading-relaxed text-[var(--color-void-black)] font-bold">
+            Full-stack development, embedded systems, tooling. Clean architecture & performance.
+          </p>
+
+          <!-- Clean Progress Bar -->
+          <div class="mt-6">
+            <div class="flex items-center justify-between font-mono text-[10px] font-bold tracking-wider mb-2">
+              <span class="text-[var(--color-void-black)]">PROFICIENCY</span>
+              <span class="text-[var(--color-chalk-white)] bg-[var(--color-void-black)] px-2 py-0.5 clip-parallelogram-reverse">90%</span>
+            </div>
+            <div class="w-full bg-[var(--color-chalk-white)] h-1 clip-parallelogram-reverse" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+              <div class="bg-[var(--color-void-black)] h-full" style="width: 90%;"></div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            {['TypeScript', 'Rust', 'Python'].map((tool, i) => {
+              const rot = i % 2 === 0 ? 'rotate-[-3deg]' : 'rotate-[3deg]';
+              return (
+                <div class={`${rot} hover-snap`}>
+                  <span class="border-2 border-[var(--color-void-black)] px-3 py-1 font-space font-bold text-[10px] text-[var(--color-void-black)] bg-transparent hover:bg-[var(--color-void-black)] hover:text-[var(--color-ember-orange)] transition-colors block">
+                    {tool}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </article>
+      </div>
+
+      <!-- Audio -->
+      <div class="relative group sm:translate-y-8 hover-snap rotate-[1.5deg] origin-center">
+        <article class="relative border-2 border-[var(--color-chalk-white)] bg-[var(--color-deep-brown)] p-8 clip-parallelogram z-10 transition-transform">
+          
+          <div class="flex items-start justify-between">
+            <h3 class="font-bebas text-3xl tracking-widest text-[var(--color-chalk-white)] transform -skew-x-6 italic">Audio</h3>
+          </div>
+
+          <p class="mt-4 font-inter text-xs leading-relaxed text-[var(--color-chalk-white)]/80">
+            Sound design, field recording, sonic atmospheres & raw tape textures.
+          </p>
+
+          <!-- Clean Progress Bar -->
+          <div class="mt-6">
+            <div class="flex items-center justify-between font-mono text-[10px] font-bold tracking-wider mb-2">
+              <span class="text-[var(--color-chalk-white)]">PROFICIENCY</span>
+              <span class="text-[var(--color-void-black)] bg-[var(--color-chalk-white)] px-2 py-0.5 clip-parallelogram">85%</span>
+            </div>
+            <div class="w-full bg-[var(--color-steel-black)] h-1 clip-parallelogram" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+              <div class="bg-[var(--color-chalk-white)] h-full" style="width: 85%;"></div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            {['Ableton Live', 'Logic Pro', 'Pro Tools'].map((tool, i) => {
+              const rot = i % 2 === 0 ? 'rotate-[3deg]' : 'rotate-[-3deg]';
+              return (
+                <div class={`${rot} hover-snap`}>
+                  <span class="border-2 border-[var(--color-chalk-white)] px-3 py-1 font-space font-bold text-[10px] text-[var(--color-chalk-white)] bg-transparent hover:bg-[var(--color-chalk-white)] hover:text-[var(--color-deep-brown)] transition-colors block">
+                    {tool}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </article>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const w = window as any;
+  if (w.__skillsCleanup) {
+    w.__skillsCleanup();
+  }
+  if (w.__skillsPageLoadHandler) {
+    document.removeEventListener('astro:page-load', w.__skillsPageLoadHandler);
+  }
+
+  function initSkillsAnimations() {
+    if (w.__skillsCleanup) {
+      w.__skillsCleanup();
+    }
+
+    const section = document.getElementById('skills');
+    if (!section) return;
+
+    const cards = section.querySelectorAll('article');
+    const progressBars = section.querySelectorAll('[role="progressbar"] > div');
+
+    const ctx = gsap.context(() => {
+      // 1. Cards staggered reveal animation
+      gsap.from(cards, {
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+
+      // 2. Progress bars animated fill
+      progressBars.forEach((bar) => {
+        const targetWidth = bar.getAttribute('style')?.match(/width:\s*(\d+)%/)?.[1] || '100';
+        gsap.fromTo(
+          bar,
+          { width: '0%' },
+          {
+            width: `${targetWidth}%`,
+            duration: 1.2,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: bar,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      });
+    }, section);
+
+    w.__skillsCleanup = () => {
+      ctx.revert();
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSkillsAnimations, { once: true });
+  } else {
+    initSkillsAnimations();
+  }
+  w.__skillsPageLoadHandler = initSkillsAnimations;
+  document.addEventListener('astro:page-load', w.__skillsPageLoadHandler);
+</script>

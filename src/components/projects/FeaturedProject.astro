@@ -1,0 +1,274 @@
+---
+import { Image } from 'astro:assets';
+import featuredImg from '@assets/images/LELEMETER.jpg';
+---
+
+<section
+  id="featured"
+  data-scroll-section="featured"
+  class="relative bg-[var(--color-void-black)]/60 py-28 sm:py-36 overflow-hidden"
+  aria-labelledby="featured-heading"
+>
+  <!-- Background Zine Outline text -->
+  <div class="absolute -left-8 bottom-10 font-bebas text-[18rem] leading-none outline-text select-none z-0 pointer-events-none opacity-20" aria-hidden="true">
+    WORKS
+  </div>
+
+  <!-- Interactive Tactical Cursor Grid Spotlight Overlay -->
+  <div
+    id="featured-cursor-grid"
+    class="absolute inset-0 pointer-events-none select-none z-10 transition-opacity duration-500 opacity-0"
+    aria-hidden="true"
+  >
+    <!-- Tactical Grid Pattern masked around cursor -->
+    <div
+      class="w-full h-full"
+      style="
+        background-image: 
+          linear-gradient(to right, rgba(214, 58, 28, 0.28) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(214, 58, 28, 0.28) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(circle 360px at var(--grid-mouse-x, 50%) var(--grid-mouse-y, 50%), rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 80%);
+        -webkit-mask-image: radial-gradient(circle 360px at var(--grid-mouse-x, 50%) var(--grid-mouse-y, 50%), rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 80%);
+      "
+    ></div>
+
+    <!-- Radial Glow Center Spotlight -->
+    <div
+      class="absolute w-[450px] h-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+      style="
+        left: var(--grid-mouse-x, 50%);
+        top: var(--grid-mouse-y, 50%);
+        background: radial-gradient(circle, rgba(214, 58, 28, 0.14) 0%, rgba(214, 58, 28, 0) 70%);
+        will-change: left, top;
+      "
+    ></div>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+
+    <!-- Section Header (High impact layout) -->
+    <div class="mb-20 flex items-baseline gap-4">
+      <span class="font-mono text-xs tracking-wider text-[var(--color-burnt-crimson)]">CH.03 / SELECTED</span>
+      <h2 id="featured-heading" class="font-bebas text-5xl tracking-widest text-[var(--color-chalk-white)] sm:text-6xl cmyk-bleed">
+        Featured
+      </h2>
+      <div class="h-[1px] flex-1 bg-[var(--color-burnt-crimson)]/30 ml-4"></div>
+    </div>
+
+    <!-- Zine Centerfold Layout (Broken grid, 80px overlapping) -->
+    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
+      
+      <!-- Project Image Print (Left / Center - Slanted Geometry, 5° left) -->
+      <div class="lg:col-span-8 relative z-0 group min-h-[300px]">
+        
+        <!-- Layer 1: Backing Paper (skew-5-left) -->
+        <div class="absolute inset-0 bg-[#090909] border border-[var(--color-steel-black)] -translate-x-3 -translate-y-3 skew-5-left z-0" aria-hidden="true"></div>
+        <!-- Layer 2: Colored Backing Paper (skew-5-left) -->
+        <div class="absolute inset-0 bg-[var(--color-burnt-crimson)] translate-x-3 translate-y-3 skew-5-left z-10" aria-hidden="true"></div>
+        
+        <!-- Layer 3: Main Photo print (skew-5-left) -->
+        <div class="relative bg-black border-2 border-[var(--color-steel-black)] overflow-hidden grain-overlay flex items-center justify-center skew-5-left z-20 group">
+          <Image src={featuredImg} width={800} format="webp" quality={85} loading="eager" alt="Lelemeter Project" class="block w-full h-auto object-cover opacity-80" />
+        </div>
+
+        <!-- Overlapping tape strip -->
+        <div class="absolute -top-3 left-1/4 w-32 h-5 bg-[var(--color-chalk-white)]/10 backdrop-blur-xs border-y border-[var(--color-chalk-white)]/20 rotate-[2deg] z-30" aria-hidden="true"></div>
+      </div>
+
+      <!-- Details Card (Right / Overlapping by 80px on desktop - Slanted Geometry, 3° right) -->
+      <div class="lg:col-span-5 lg:-ml-20 lg:mt-16 relative z-10 flex flex-col justify-between reveal reveal-right">
+        
+        <!-- Layer 1: Backing Paper (skew-3-right) -->
+        <div class="absolute inset-0 bg-[#090909] border border-gray-800 -translate-x-2 -translate-y-2 skew-3-right z-0" aria-hidden="true"></div>
+        <!-- Layer 2: Colored Backing Paper (skew-3-right) -->
+        <div class="absolute inset-0 bg-[var(--color-red-blast)] translate-x-2 translate-y-2 skew-3-right z-10" aria-hidden="true"></div>
+
+        <!-- Layer 3: Main Card Panel (skew-3-right) -->
+        <div class="relative border-4 border-[var(--color-chalk-white)] bg-[var(--color-steel-black)] p-8 hard-shadow-lg transition-transform duration-300 z-20 skew-3-right">
+          
+          <!-- Mock checkout receipt / shipping label zine artifact (Bevel Geometry) -->
+          <div class="absolute -right-6 -top-12 rotate-[8deg] bg-[var(--color-chalk-white)] text-[var(--color-void-black)] p-4 border border-gray-400 font-mono text-[8px] max-w-[140px] leading-tight select-none z-30 shadow-md bevel-brutalist">
+            <div class="text-center font-bold border-b border-[var(--color-void-black)] pb-1.5 mb-1.5">AR.wrks</div>
+            <p>ITEM: ARCHIVE_01</p>
+            <p>CODE: SP-03-FEATURED</p>
+            <p class="border-b border-dashed border-[var(--color-void-black)] pb-1 mb-1">DATE: 2026/07/21</p>
+            <div class="flex justify-between font-bold text-[9px] mt-1.5">
+              <span>TOTAL:</span>
+              <span>0.00 YEN</span>
+            </div>
+            <div class="brutalist-barcode h-4 w-full bg-[var(--color-void-black)] mt-2"></div>
+          </div>
+
+          <!-- Staple style header -->
+          <div class="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-1.5 bg-[#444] rounded-sm rotate-[-4deg]" aria-hidden="true"></div>
+
+          <span class="inline-block border border-[var(--color-burnt-crimson)]/50 bg-[var(--color-void-black)] px-3 py-1 font-mono text-[9px] tracking-wider text-[var(--color-ember-orange)] uppercase">
+            CASE STUDY
+          </span>
+
+          <h3 id="lelemeter-title" data-scramble="LELEMETER" class="mt-4 font-space font-bold text-3xl sm:text-4xl tracking-wider text-[var(--color-chalk-white)]">
+            LELEMETER
+          </h3>
+
+          <div class="mt-4 font-inter text-xs leading-relaxed text-[var(--color-warm-gray)] space-y-3">
+            <p>
+              A simple smartphone light meter built with Flutter that measures ambient light using the device's lux sensor and converts it into useful exposure information for photography.
+            </p>
+            <p>
+              This project aims to turn a smartphone into a portable light meter for photographers.
+            </p>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-1.5">
+            {['Flutter', 'Dart', 'Android', 'Lux Sensor'].map((tag) => (
+              <span class="border border-[var(--color-steel-black)] bg-[var(--color-void-black)] px-2 py-0.5 font-mono text-[8px] text-[var(--color-warm-gray)]">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <!-- Links (Slanted buttons, skew-3-right) -->
+          <div class="mt-8 flex flex-wrap gap-6">
+            <!-- Button 1 -->
+            <div class="relative group">
+              <div class="absolute inset-0 bg-[var(--color-burnt-crimson)] translate-x-1 translate-y-1 skew-3-right transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5"></div>
+              <a
+                href="https://github.com/Aristyo2006/LELEMETER"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="relative inline-block border-2 border-[var(--color-chalk-white)] px-5 py-2 font-space text-xs uppercase tracking-widest text-[var(--color-chalk-white)] transition-all hover:border-[var(--color-red-blast)] hover:bg-[var(--color-red-blast)] font-bold skew-3-right"
+                data-magnetic="0.15"
+              >
+                View in Github ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const w = window as any;
+  if (w.__featuredGridCleanup) {
+    w.__featuredGridCleanup();
+  }
+  if (w.__featuredGridPageLoadHandler) {
+    document.removeEventListener('astro:page-load', w.__featuredGridPageLoadHandler);
+  }
+
+  function initFeaturedCursorGrid() {
+    if (w.__featuredGridCleanup) {
+      w.__featuredGridCleanup();
+    }
+
+    const section = document.getElementById('featured');
+    const gridContainer = document.getElementById('featured-cursor-grid');
+    if (!section || !gridContainer) return;
+
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
+    // One-time GSAP Cyber Text Scramble Decoder for LELEMETER title on ScrollTrigger
+    if (!w.__lelemeterHasScrambled) {
+      const lelemeterTitle = document.getElementById('lelemeter-title');
+      if (lelemeterTitle) {
+        ScrollTrigger.create({
+          trigger: lelemeterTitle,
+          start: 'top 85%',
+          once: true,
+          onEnter: () => {
+            w.__lelemeterHasScrambled = true;
+            const targetText = 'LELEMETER';
+            const cyberChars = '!@#$%^&*()_+-=[]{}|;:,.<>?/0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let frame = 0;
+            const totalFrames = targetText.length * 3 + 8;
+
+            const timer = setInterval(() => {
+              lelemeterTitle.textContent = targetText
+                .split('')
+                .map((char, charIdx) => {
+                  if (charIdx < Math.floor(frame / 3)) return targetText[charIdx];
+                  return cyberChars[Math.floor(Math.random() * cyberChars.length)];
+                })
+                .join('');
+
+              if (frame >= totalFrames) {
+                lelemeterTitle.textContent = targetText;
+                clearInterval(timer);
+              }
+              frame++;
+            }, 35);
+          },
+        });
+      }
+    }
+
+    let rafId = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isMouseOver = false;
+
+    function updateGridPosition() {
+      currentX += (targetX - currentX) * 0.18;
+      currentY += (targetY - currentY) * 0.18;
+
+      gridContainer.style.setProperty('--grid-mouse-x', `${currentX}px`);
+      gridContainer.style.setProperty('--grid-mouse-y', `${currentY}px`);
+
+      if (isMouseOver || Math.abs(targetX - currentX) > 0.5 || Math.abs(targetY - currentY) > 0.5) {
+        rafId = requestAnimationFrame(updateGridPosition);
+      } else {
+        rafId = 0;
+      }
+    }
+
+    section.addEventListener('mousemove', (e) => {
+      const rect = section.getBoundingClientRect();
+      targetX = e.clientX - rect.left;
+      targetY = e.clientY - rect.top;
+
+      if (!isMouseOver) {
+        isMouseOver = true;
+        gridContainer.classList.remove('opacity-0');
+        gridContainer.classList.add('opacity-100');
+        currentX = targetX;
+        currentY = targetY;
+      }
+
+      if (!rafId) {
+        rafId = requestAnimationFrame(updateGridPosition);
+      }
+    }, { passive: true, signal });
+
+    section.addEventListener('mouseleave', () => {
+      isMouseOver = false;
+      gridContainer.classList.remove('opacity-100');
+      gridContainer.classList.add('opacity-0');
+    }, { signal });
+
+    w.__featuredGridCleanup = () => {
+      abortController.abort();
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFeaturedCursorGrid, { once: true });
+  } else {
+    initFeaturedCursorGrid();
+  }
+  w.__featuredGridPageLoadHandler = initFeaturedCursorGrid;
+  document.addEventListener('astro:page-load', w.__featuredGridPageLoadHandler);
+</script>

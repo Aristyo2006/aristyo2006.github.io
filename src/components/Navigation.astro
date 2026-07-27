@@ -1,0 +1,423 @@
+---
+import { Image } from 'astro:assets';
+import logoImg from '@/assets/images/logo2_w.png';
+
+const navItems = [
+  { id: '01', href: '#profile', label: 'PROFILE' },
+  { id: '02', href: '#skills', label: 'SKILLS' },
+  { id: '03', href: '#featured', label: 'FEATURED' },
+  { id: '04', href: '#projects', label: 'PROJECTS' },
+  { id: '05', href: '#gallery', label: 'GALLERY' },
+  { id: '06', href: '#contact', label: 'CONTACT' },
+];
+---
+
+<!-- 1. FULL TOP NAVBAR (Visible at top of page) -->
+<header
+  id="main-top-nav"
+  class="fixed left-0 right-0 top-0 w-full z-[100] overflow-hidden border-b border-[var(--color-chalk-white)]/15 bg-[var(--color-void-black)] text-[var(--color-chalk-white)] will-change-transform"
+  role="navigation"
+  aria-label="Main navigation"
+>
+  <div id="top-nav-red-line" class="h-[2px] w-full origin-left bg-[var(--color-red-blast)]"></div>
+  <div id="nav-full-content" class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-6">
+    <a href="#hero" class="group flex h-14 items-center gap-3" aria-label="Go to hero section">
+      <div id="top-nav-logo-mark" class="flex items-center">
+        <Image src={logoImg} alt="Logo" class="h-14 sm:h-16 w-auto object-contain transition-opacity group-hover:opacity-85" />
+      </div>
+      <span id="top-nav-meta" class="hidden font-space text-[9px] font-bold uppercase tracking-[0.22em] text-[var(--color-warm-gray)] sm:block">
+        PORTFOLIO
+      </span>
+    </a>
+
+    <nav id="top-nav-links" class="hidden items-center gap-1 md:flex" aria-label="Primary sections">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="nav-link group relative px-3 py-2 font-space text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--color-warm-gray)] transition-colors hover:text-[var(--color-chalk-white)]"
+        >
+          <span class="mr-2 font-mono text-[8px] text-[var(--color-red-blast)]">{item.id}</span>
+          {item.label}
+          <span class="absolute bottom-0 left-3 right-3 h-px origin-left scale-x-0 bg-[var(--color-red-blast)] transition-transform duration-200 group-hover:scale-x-100"></span>
+        </a>
+      ))}
+    </nav>
+
+    <button
+      id="mobile-menu-btn"
+      class="flex h-10 items-center border border-[var(--color-chalk-white)]/25 px-3 font-space text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--color-warm-gray)] transition-colors hover:border-[var(--color-red-blast)] hover:text-[var(--color-chalk-white)] md:hidden"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      Menu
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-[var(--color-chalk-white)]/10 bg-[var(--color-void-black)] md:hidden" role="menu">
+    <div class="grid gap-px px-5 py-3">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          role="menuitem"
+          class="flex items-center justify-between border border-[var(--color-chalk-white)]/10 bg-[var(--color-steel-black)] px-3 py-3 font-space text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--color-chalk-white)] transition-colors hover:border-[var(--color-red-blast)]"
+        >
+          <span>{item.label}</span>
+          <span class="font-mono text-[9px] text-[var(--color-red-blast)]">{item.id}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<!-- 2. TACTICAL COLLAPSED LOGO TRIGGER & UNFOLDING CONTROL PANEL -->
+<div
+  id="tac-trigger-wrapper"
+  class="fixed left-4 top-4 z-[101] pointer-events-none select-none opacity-0 will-change-transform sm:left-5"
+  style="transform: translate3d(0, -8px, 0);"
+  role="navigation"
+  aria-label="Compact tactical navigation"
+>
+  <div id="tac-trigger-container" class="relative flex items-start">
+    <button
+      id="tac-logo-btn"
+      class="relative z-30 flex h-14 items-center justify-center px-3.5 py-1 bg-[var(--color-void-black)] border border-[var(--color-chalk-white)]/40 hover:border-[var(--color-red-blast)] transition-colors cursor-pointer pointer-events-auto shadow-2xl"
+      aria-label="Open compact navigation"
+      aria-expanded="false"
+      aria-controls="tac-unfold-panel"
+    >
+      <span class="absolute left-0 top-0 h-[2px] w-full bg-[var(--color-red-blast)]"></span>
+      <Image src={logoImg} alt="Logo" class="h-10 sm:h-11 w-auto object-contain" />
+    </button>
+
+    <!-- GPU-Scalable Unfolding Panel (Spacious layout with clean breathing room) -->
+    <div
+      id="tac-unfold-panel"
+      class="pointer-events-none absolute left-0 top-0 z-20 w-[270px] overflow-hidden"
+      aria-hidden="true"
+    >
+      <div
+        id="tac-panel-bg"
+        class="absolute inset-0 origin-left border border-[var(--color-chalk-white)]/35 bg-[var(--color-void-black)] shadow-2xl will-change-transform"
+        style="transform: scaleX(0); opacity: 0;"
+      >
+        <div class="h-[2px] w-full bg-[var(--color-red-blast)]"></div>
+      </div>
+
+      <!-- Links List Container -->
+      <div class="relative pl-20 pr-4 py-4 w-[270px]">
+        <div class="flex flex-col gap-2">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class="tac-link group flex items-center justify-between border-l-2 border-transparent px-3 py-2 font-space text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-warm-gray)] opacity-0 transition-all hover:border-[var(--color-red-blast)] hover:bg-[var(--color-steel-black)] hover:text-[var(--color-chalk-white)]"
+            >
+              <span class="flex items-center gap-3">
+                <span class="font-mono text-[10px] text-[var(--color-red-blast)]">{item.id}.</span>
+                <span>{item.label}</span>
+              </span>
+              <span class="tac-dot h-2 w-2 bg-[var(--color-red-blast)] opacity-0 transition-opacity"></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const w = window as any;
+  if (w.__tacNavCleanup) {
+    w.__tacNavCleanup();
+  }
+  if (w.__tacNavPageLoadHandler) {
+    document.removeEventListener('astro:page-load', w.__tacNavPageLoadHandler);
+  }
+
+  function initNav() {
+    if (w.__tacNavCleanup) {
+      w.__tacNavCleanup();
+    }
+
+    const topNav = document.getElementById('main-top-nav') as HTMLElement | null;
+    const triggerWrapper = document.getElementById('tac-trigger-wrapper') as HTMLElement | null;
+    const triggerContainer = document.getElementById('tac-trigger-container') as HTMLElement | null;
+    const logoBtn = document.getElementById('tac-logo-btn') as HTMLButtonElement | null;
+    const unfoldPanel = document.getElementById('tac-unfold-panel') as HTMLElement | null;
+    const panelBg = document.getElementById('tac-panel-bg') as HTMLElement | null;
+    const links = gsap.utils.toArray<HTMLElement>('.tac-link');
+    const heroSection = document.getElementById('hero');
+    const mobileBtn = document.getElementById('mobile-menu-btn') as HTMLButtonElement | null;
+    const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
+
+    if (!topNav || !triggerWrapper || !triggerContainer || !logoBtn || !unfoldPanel || !panelBg) return;
+
+    const topNavEl: HTMLElement = topNav;
+    const triggerWrapperEl: HTMLElement = triggerWrapper;
+    const triggerContainerEl: HTMLElement = triggerContainer;
+    const logoBtnEl: HTMLButtonElement = logoBtn;
+    const unfoldPanelEl: HTMLElement = unfoldPanel;
+    const panelBgEl: HTMLElement = panelBg;
+
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let isPastHero = window.scrollY > ((heroSection?.offsetHeight || window.innerHeight) - 96);
+    let isPanelOpen = false;
+    let openTimeline: gsap.core.Timeline | null = null;
+    let closeTimeline: gsap.core.Timeline | null = null;
+    let hoverCloseTimer: ReturnType<typeof setTimeout> | null = null;
+    let scrollRaf = 0;
+
+    gsap.set(panelBgEl, { scaleX: 0, opacity: 0, transformOrigin: 'left center' });
+    gsap.set(links, { opacity: 0, x: -12 });
+
+    if (isPastHero) {
+      gsap.set(topNavEl, { yPercent: -100, opacity: 0, pointerEvents: 'none' });
+      gsap.set(triggerWrapperEl, { opacity: 1, y: 0, pointerEvents: 'auto' });
+    } else {
+      gsap.set(topNavEl, { yPercent: 0, opacity: 1, pointerEvents: 'auto' });
+      gsap.set(triggerWrapperEl, { opacity: 0, y: -8, pointerEvents: 'none' });
+    }
+
+    const scrollTriggerInstance = ScrollTrigger.create({
+      trigger: heroSection || document.body,
+      start: 'bottom 96px',
+      end: 'bottom top',
+      onEnter: () => {
+        isPastHero = true;
+        showFloatingTrigger();
+      },
+      onLeaveBack: () => {
+        isPastHero = false;
+        hideFloatingTrigger();
+      },
+    });
+
+    function showFloatingTrigger() {
+      gsap.killTweensOf([topNavEl, triggerWrapperEl]);
+      closeMobileMenu();
+
+      gsap.to(topNavEl, {
+        yPercent: -100,
+        opacity: 0,
+        duration: prefersReducedMotion ? 0.01 : 0.36,
+        ease: 'power3.inOut',
+        overwrite: 'auto',
+        onComplete: () => { topNavEl.style.pointerEvents = 'none'; },
+      });
+
+      gsap.to(triggerWrapperEl, {
+        opacity: 1,
+        y: 0,
+        duration: prefersReducedMotion ? 0.01 : 0.38,
+        delay: prefersReducedMotion ? 0 : 0.04,
+        ease: 'power3.out',
+        overwrite: 'auto',
+        onStart: () => { triggerWrapperEl.style.pointerEvents = 'auto'; },
+      });
+    }
+
+    function hideFloatingTrigger() {
+      gsap.killTweensOf([topNavEl, triggerWrapperEl]);
+      closePanelInstant();
+
+      gsap.to(triggerWrapperEl, {
+        opacity: 0,
+        y: -8,
+        duration: prefersReducedMotion ? 0.01 : 0.24,
+        ease: 'power2.in',
+        overwrite: 'auto',
+        onComplete: () => { triggerWrapperEl.style.pointerEvents = 'none'; },
+      });
+
+      gsap.to(topNavEl, {
+        yPercent: 0,
+        opacity: 1,
+        duration: prefersReducedMotion ? 0.01 : 0.38,
+        delay: prefersReducedMotion ? 0 : 0.04,
+        ease: 'power3.out',
+        overwrite: 'auto',
+        onStart: () => { topNavEl.style.pointerEvents = 'auto'; },
+      });
+    }
+
+    function openPanel() {
+      if (isPanelOpen || !isPastHero) return;
+      isPanelOpen = true;
+      logoBtnEl.setAttribute('aria-expanded', 'true');
+      unfoldPanelEl.setAttribute('aria-hidden', 'false');
+      unfoldPanelEl.style.pointerEvents = 'auto';
+      if (hoverCloseTimer) clearTimeout(hoverCloseTimer);
+      if (closeTimeline) closeTimeline.kill();
+      if (openTimeline) openTimeline.kill();
+
+      highlightActiveLink();
+
+      openTimeline = gsap.timeline({ defaults: { overwrite: 'auto' } });
+      openTimeline
+        .to(panelBgEl, {
+          scaleX: 1,
+          opacity: 1,
+          duration: prefersReducedMotion ? 0.01 : 0.38,
+          ease: 'power3.inOut',
+        }, 0)
+        .to(links, {
+          opacity: 1,
+          x: 0,
+          duration: prefersReducedMotion ? 0.01 : 0.25,
+          ease: 'power2.out',
+          stagger: 0.03,
+        }, 0.12);
+    }
+
+    function closePanel() {
+      if (!isPanelOpen) return;
+      isPanelOpen = false;
+      logoBtnEl.setAttribute('aria-expanded', 'false');
+      unfoldPanelEl.setAttribute('aria-hidden', 'true');
+      if (openTimeline) openTimeline.kill();
+      if (closeTimeline) closeTimeline.kill();
+
+      closeTimeline = gsap.timeline({
+        defaults: { overwrite: 'auto' },
+        onComplete: () => {
+          if (!isPanelOpen) unfoldPanelEl.style.pointerEvents = 'none';
+        },
+      });
+
+      closeTimeline
+        .to(links.slice().reverse(), {
+          opacity: 0,
+          x: -10,
+          duration: prefersReducedMotion ? 0.01 : 0.16,
+          ease: 'power2.in',
+          stagger: 0.015,
+        }, 0)
+        .to(panelBgEl, {
+          scaleX: 0,
+          opacity: 0,
+          duration: prefersReducedMotion ? 0.01 : 0.28,
+          ease: 'power3.inOut',
+        }, 0.1);
+    }
+
+    function closePanelSoon() {
+      if (hoverCloseTimer) clearTimeout(hoverCloseTimer);
+      hoverCloseTimer = setTimeout(() => {
+        if (!triggerContainerEl.matches(':hover') && !triggerContainerEl.contains(document.activeElement)) {
+          closePanel();
+        }
+      }, 90);
+    }
+
+    function closePanelInstant() {
+      isPanelOpen = false;
+      logoBtnEl.setAttribute('aria-expanded', 'false');
+      unfoldPanelEl.setAttribute('aria-hidden', 'true');
+      unfoldPanelEl.style.pointerEvents = 'none';
+      if (openTimeline) openTimeline.kill();
+      if (closeTimeline) closeTimeline.kill();
+      gsap.set(panelBgEl, { scaleX: 0, opacity: 0 });
+      gsap.set(links, { opacity: 0, x: -10 });
+    }
+
+    function highlightActiveLink() {
+      const scrollPos = window.scrollY + window.innerHeight * 0.38;
+
+      links.forEach((link) => {
+        const href = link.getAttribute('href');
+        const dot = link.querySelector('.tac-dot') as HTMLElement | null;
+        if (!href) return;
+
+        const targetSection = document.querySelector(href) as HTMLElement | null;
+        const isActive = !!targetSection && scrollPos >= targetSection.offsetTop && scrollPos < targetSection.offsetTop + targetSection.offsetHeight;
+
+        link.toggleAttribute('aria-current', isActive);
+        link.classList.toggle('text-[var(--color-chalk-white)]', isActive);
+        link.classList.toggle('border-[var(--color-red-blast)]', isActive);
+        if (dot) dot.style.opacity = isActive && isPanelOpen ? '1' : '0';
+      });
+    }
+
+    function closeMobileMenu() {
+      if (!mobileBtn || !mobileMenu) return;
+      mobileBtn.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.add('hidden');
+    }
+
+    triggerContainerEl.addEventListener('mouseenter', openPanel, { signal });
+    triggerContainerEl.addEventListener('mouseleave', closePanelSoon, { signal });
+    triggerContainerEl.addEventListener('focusin', openPanel, { signal });
+    triggerContainerEl.addEventListener('focusout', closePanelSoon, { signal });
+
+    logoBtnEl.addEventListener('click', (e) => {
+      if (!isPastHero) return;
+      e.stopPropagation();
+      isPanelOpen ? closePanel() : openPanel();
+    }, { signal });
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        setTimeout(closePanel, 120);
+      }, { signal });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (isPanelOpen && !triggerContainerEl.contains(e.target as Node)) closePanel();
+    }, { signal });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isPanelOpen) {
+        closePanel();
+        logoBtnEl.focus();
+      }
+    }, { signal });
+
+    window.addEventListener('scroll', () => {
+      if (scrollRaf) return;
+      scrollRaf = requestAnimationFrame(() => {
+        highlightActiveLink();
+        scrollRaf = 0;
+      });
+    }, { passive: true, signal });
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+        mobileBtn.setAttribute('aria-expanded', String(!expanded));
+        mobileMenu.classList.toggle('hidden', expanded);
+      }, { signal });
+
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMobileMenu, { signal });
+      });
+    }
+
+    highlightActiveLink();
+
+    w.__tacNavCleanup = () => {
+      abortController.abort();
+      scrollTriggerInstance.kill();
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      if (hoverCloseTimer) clearTimeout(hoverCloseTimer);
+      if (openTimeline) openTimeline.kill();
+      if (closeTimeline) closeTimeline.kill();
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNav, { once: true });
+  } else {
+    initNav();
+  }
+  w.__tacNavPageLoadHandler = initNav;
+  document.addEventListener('astro:page-load', w.__tacNavPageLoadHandler);
+</script>

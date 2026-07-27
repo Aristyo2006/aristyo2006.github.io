@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import HeroSection from '@/components/hero/HeroSection.astro';
+import ProfileSection from '@/components/profile/ProfileSection.astro';
+import SkillsSection from '@/components/skills/SkillsSection.astro';
+import FeaturedProject from '@/components/projects/FeaturedProject.astro';
+import ProjectsSection from '@/components/projects/ProjectsSection.astro';
+import GallerySection from '@/components/gallery/GallerySection.astro';
+import StatsSection from '@/components/stats/StatsSection.astro';
+import MarqueeSection from '@/components/marquee/MarqueeSection.astro';
+import ContactSection from '@/components/contact/ContactSection.astro';
+---
+
+<BaseLayout>
+  <Navigation />
+
+  <main id="main-content" role="main">
+    <HeroSection />
+    <ProfileSection />
+    <SkillsSection />
+    <FeaturedProject />
+    <ProjectsSection />
+    <GallerySection />
+    <StatsSection />
+    <MarqueeSection />
+    <ContactSection />
+  </main>
+</BaseLayout>

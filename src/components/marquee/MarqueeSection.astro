@@ -1,0 +1,22 @@
+<div
+  class="relative overflow-hidden border-t-2 border-b-2 border-[var(--color-burnt-crimson)] bg-[var(--color-steel-black)]/60 py-4"
+  aria-label="Infinite scrolling text: Photography, Videography, Design, Audio, Programming"
+>
+  <!-- Row 1: Left to right -->
+  <div class="flex w-max animate-[marquee_20s_linear_infinite] gap-12" aria-hidden="true">
+    {[...Array(3)].map(() => (
+      <>
+        <span class="whitespace-nowrap font-bebas text-5xl tracking-widest text-[var(--color-chalk-white)] sm:text-6xl lg:text-7xl">PHOTOGRAPHY</span>
+        <span class="whitespace-nowrap font-bebas text-xl tracking-widest text-[var(--color-ember-orange)] self-center">◆</span>
+        <span class="whitespace-nowrap font-bebas text-5xl tracking-widest text-[var(--color-red-blast)] sm:text-6xl lg:text-7xl">VIDEOGRAPHY</span>
+        <span class="whitespace-nowrap font-bebas text-xl tracking-widest text-[var(--color-chalk-white)] self-center">◆</span>
+        <span class="whitespace-nowrap font-bebas text-5xl tracking-widest text-[var(--color-chalk-white)] sm:text-6xl lg:text-7xl">DESIGN</span>
+        <span class="whitespace-nowrap font-bebas text-xl tracking-widest text-[var(--color-ember-orange)] self-center">◆</span>
+        <span class="whitespace-nowrap font-bebas text-5xl tracking-widest text-[var(--color-burnt-crimson)] sm:text-6xl lg:text-7xl">AUDIO</span>
+        <span class="whitespace-nowrap font-bebas text-xl tracking-widest text-[var(--color-chalk-white)] self-center">◆</span>
+        <span class="whitespace-nowrap font-bebas text-5xl tracking-widest text-[var(--color-chalk-white)] sm:text-6xl lg:text-7xl">PROGRAMMING</span>
+        <span class="whitespace-nowrap font-bebas text-xl tracking-widest text-[var(--color-red-blast)] self-center">◆</span>
+      </>
+    ))}
+  </div>
+</div>

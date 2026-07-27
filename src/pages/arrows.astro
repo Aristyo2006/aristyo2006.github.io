@@ -1,0 +1,85 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ShibuyaArrow from '@/components/arrows/ShibuyaArrow.astro';
+
+const arrowList = [
+  { id: 'long-nav', title: '01. Long Navigation Arrow', desc: 'Extended skewed racing arrow with stencil barcodes and micro coordinates' },
+  { id: 'small-pointer', title: '02. Small Pointer Arrow', desc: 'Compact high-velocity pointer with white border cut and Japanese [次へ] label' },
+  { id: 'folded', title: '03. Folded Origami Arrow', desc: 'Zine-style folded 3D ribbon arrow with faceted geometric cuts and stencil marks' },
+  { id: 'double', title: '04. Double Chevron Arrow', desc: 'Dual-layered staggered chevron arrows in red and white with offset shadow' },
+  { id: 'triple', title: '05. Triple Chevron Arrow', desc: 'High-speed triple chevron burst with accelerator markings and [加速] stencil' },
+  { id: 'vertical', title: '06. Vertical Down Arrow', desc: 'Metro station style vertical down-scroll arrow with stencil SUBWAY and 地下' },
+  { id: 'corner', title: '07. 90° Corner Arrow', desc: 'L-shaped angular corner wayfinding bracket with cut corners and target reticle' },
+  { id: 'scroll', title: '08. Scroll Indicator Arrow', desc: 'Dynamic scroll indicator track with pulse marker and Japanese [スクロール]' },
+  { id: 'transition', title: '09. Section Transition Arrow', desc: 'Brutalist wide chevron transition block with diagonal hazard stripes' },
+  { id: 'diagonal', title: '10. 45° Diagonal Arrow', desc: 'Top-right explosive arrow with racing livery #89 and [斜め] stencil' },
+  { id: 'wide-block', title: '11. Wide Industrial Block Arrow', desc: 'Heavy industrial wayfinding block with [DANGER // 高電圧] warning plate' },
+  { id: 'thin-tech', title: '12. Thin Technical Arrow', desc: 'Blueprint/HUD precision arrow with millimeter ruler ticks and GPS coordinates' },
+] as const;
+---
+
+<BaseLayout title="Shibuya Punk Arrows Collection // AR.wrks">
+  <main class="min-h-screen bg-[var(--color-void-black)] text-[var(--color-chalk-white)] py-20 px-6 max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="mb-16 border-b-2 border-[var(--color-red-blast)] pb-8 relative">
+      <div class="inline-block bg-[var(--color-burnt-crimson)] text-[var(--color-chalk-white)] font-mono text-xs font-bold px-4 py-1 clip-parallelogram uppercase mb-3 transform -skew-x-12">
+        VECTOR GRAPHIC SYSTEM // 2026 EDITION
+      </div>
+      <h1 class="font-bebas text-6xl sm:text-8xl tracking-widest text-[var(--color-chalk-white)] italic transform -skew-x-6">
+        SHIBUYA PUNK ARROWS
+      </h1>
+      <p class="font-space text-sm font-bold text-[var(--color-warm-gray)] uppercase tracking-widest max-w-2xl mt-4">
+        JET SET RADIO × BOMB RUSH CYBERFUNK × PERSONA 5 × JAPANESE STREETWAY DIRECTIONAL SYSTEM
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-4 font-mono text-xs">
+        <a
+          href="/shibuya-arrows.svg"
+          target="_blank"
+          class="bg-[var(--color-red-blast)] text-[var(--color-chalk-white)] px-6 py-2 font-bold uppercase clip-parallelogram hover:bg-[var(--color-chalk-white)] hover:text-[var(--color-void-black)] transition-colors"
+        >
+          Download Full SVG Sheet (1200×1600) ↗
+        </a>
+        <a
+          href="/"
+          class="border border-[var(--color-chalk-white)] text-[var(--color-chalk-white)] px-6 py-2 font-bold uppercase clip-parallelogram-reverse hover:bg-[var(--color-chalk-white)] hover:text-[var(--color-void-black)] transition-colors"
+        >
+          ← Return to Portfolio
+        </a>
+      </div>
+    </div>
+
+    <!-- Arrow Showcase Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        arrowList.map((arrow) => (
+          <div class="border-2 border-[var(--color-steel-black)] bg-[var(--color-steel-black)]/60 backdrop-blur-md p-6 clip-parallelogram relative group hover:border-[var(--color-red-blast)] transition-colors">
+            <div class="flex justify-between items-center mb-4 border-b border-[var(--color-steel-black)] pb-3">
+              <h2 class="font-bebas text-2xl tracking-wider text-[var(--color-chalk-white)] italic transform -skew-x-6">
+                {arrow.title}
+              </h2>
+              <span class="font-mono text-[9px] bg-[var(--color-void-black)] text-[var(--color-red-blast)] px-2 py-0.5 border border-[var(--color-red-blast)] font-bold">
+                SVG COMPONENT
+              </span>
+            </div>
+
+            <!-- Preview Box -->
+            <div class="bg-[var(--color-void-black)] border border-[var(--color-steel-black)] p-8 flex items-center justify-center min-h-[160px] relative overflow-hidden group-hover:border-[var(--color-chalk-white)]/40 transition-colors">
+              <div class="absolute inset-0 jsr-bg-stripes opacity-15 pointer-events-none"></div>
+              <ShibuyaArrow name={arrow.id} class="max-w-full drop-shadow-2xl transition-transform duration-300 group-hover:scale-105" />
+            </div>
+
+            <p class="font-space text-xs text-[var(--color-warm-gray)] mt-4 leading-relaxed font-bold">
+              {arrow.desc}
+            </p>
+
+            <div class="mt-4 pt-3 border-t border-[var(--color-steel-black)] flex justify-between items-center font-mono text-[10px] text-[var(--color-warm-gray)]">
+              <span>USAGE: &lt;ShibuyaArrow name="{arrow.id}" /&gt;</span>
+              <span class="text-[var(--color-red-blast)] font-bold">#D63A1C • #F5F5F5</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </main>
+</BaseLayout>

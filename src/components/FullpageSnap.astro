@@ -1,0 +1,138 @@
+---
+---
+
+<!--
+  Proximity Snap Scroll — Native Smooth Scroll
+  Uses the browser's compositor-thread smooth scrolling instead of JS-driven GSAP.
+  Result: buttery 60fps snap animations even on heavy pages.
+-->
+<script>
+  // Global cleanup to prevent memory leaks & duplicate DOM elements on Astro HMR
+  const w = window as any;
+  if (w.__fullpageSnapCleanup) {
+    w.__fullpageSnapCleanup();
+  }
+  if (w.__fullpageSnapPageLoadHandler) {
+    document.removeEventListener('astro:page-load', w.__fullpageSnapPageLoadHandler);
+  }
+
+  function initProximitySnap() {
+    if (w.__fullpageSnapCleanup) {
+      w.__fullpageSnapCleanup();
+    }
+
+    const main = document.getElementById('main-content');
+    if (!main) return;
+
+    // Remove existing dots container if present
+    const existingDots = document.querySelector('.fullpage-snap-dots');
+    if (existingDots) existingDots.remove();
+
+    const sections: HTMLElement[] = [
+      ...Array.from(main.querySelectorAll('section[data-scroll-section]')) as HTMLElement[],
+    ];
+
+    if (sections.length === 0) return;
+
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+    let isSnapping = false;
+    let snapTarget = -1;
+    let lastScrollTime = 0;
+
+    const IDLE_DELAY = 800;
+    const SNAP_ZONE = 0.30;
+
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
+    function getSectionTop(el: HTMLElement): number {
+      return el.getBoundingClientRect().top + window.scrollY;
+    }
+
+    function findSnapTarget(): number | null {
+      const scrollY = window.scrollY;
+      const vh = window.innerHeight;
+      const threshold = vh * SNAP_ZONE;
+
+      let nearest: number | null = null;
+      let nearestDist = Infinity;
+
+      for (const section of sections) {
+        const top = getSectionTop(section);
+        const dist = Math.abs(scrollY - top);
+
+        if (dist > 3 && dist < threshold && dist < nearestDist) {
+          nearestDist = dist;
+          nearest = top;
+        }
+      }
+
+      return nearest;
+    }
+
+    function trySnap() {
+      if (isSnapping) return;
+
+      const target = findSnapTarget();
+      if (target === null) return;
+
+      isSnapping = true;
+      snapTarget = target;
+
+      window.scrollTo({
+        top: target,
+        behavior: 'smooth',
+      });
+
+      const checkArrival = () => {
+        const diff = Math.abs(window.scrollY - snapTarget);
+        if (diff < 2) {
+          isSnapping = false;
+          snapTarget = -1;
+        } else if (isSnapping) {
+          requestAnimationFrame(checkArrival);
+        }
+      };
+      requestAnimationFrame(checkArrival);
+    }
+
+    function onScroll() {
+      if (isSnapping) return;
+      lastScrollTime = Date.now();
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+
+      scrollTimeout = setTimeout(() => {
+        const now = Date.now();
+        if (now - lastScrollTime >= IDLE_DELAY - 50) {
+          trySnap();
+        }
+      }, IDLE_DELAY);
+    }
+
+    function onUserInterrupt() {
+      if (isSnapping) {
+        isSnapping = false;
+        snapTarget = -1;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true, signal });
+    window.addEventListener('wheel', onUserInterrupt, { passive: true, signal });
+    window.addEventListener('touchstart', onUserInterrupt, { passive: true, signal });
+
+    w.__fullpageSnapCleanup = () => {
+      abortController.abort();
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      const existingDots = document.querySelector('.fullpage-snap-dots');
+      if (existingDots) existingDots.remove();
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProximitySnap, { once: true });
+  } else {
+    initProximitySnap();
+  }
+  w.__fullpageSnapPageLoadHandler = initProximitySnap;
+  document.addEventListener('astro:page-load', w.__fullpageSnapPageLoadHandler);
+</script>

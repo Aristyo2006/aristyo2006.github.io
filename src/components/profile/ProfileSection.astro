@@ -1,0 +1,122 @@
+---
+import { Image } from 'astro:assets';
+import profileImg from '@assets/images/profile.JPG';
+---
+
+<section
+  id="profile"
+  data-scroll-section="profile"
+  class="relative bg-[var(--color-void-black)]/60 py-28 sm:py-36 overflow-hidden jsr-bg-halftone"
+  aria-labelledby="profile-heading"
+>
+  <!-- Subtle Background Element -->
+  <div class="absolute -left-12 -top-12 font-bebas text-[10rem] leading-none text-outline-bold select-none z-0 pointer-events-none opacity-5 transform -skew-x-12 italic" aria-hidden="true">
+    02
+  </div>
+
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+    <!-- Section Header -->
+    <div class="mb-20 flex items-baseline gap-4 ml-4 md:ml-12 relative">
+      <div class="absolute -inset-2 bg-[var(--color-burnt-crimson)] clip-parallelogram -z-10 opacity-30"></div>
+      <span class="font-mono text-xs tracking-wider font-bold text-[var(--color-chalk-white)] bg-[var(--color-red-blast)] px-3 py-1 clip-parallelogram transform -skew-x-6">CH.01 // IDENTITY</span>
+      <h2 id="profile-heading" class="font-bebas text-6xl tracking-widest text-[var(--color-chalk-white)] sm:text-7xl text-shadow-hard italic transform -skew-x-6">
+        Profile
+      </h2>
+      <div class="h-[2px] flex-1 bg-[var(--color-burnt-crimson)] ml-4"></div>
+    </div>
+
+    <!-- Two column layout with broken grid spacing -->
+    <div class="grid items-start gap-16 lg:grid-cols-12">
+      
+      <!-- Left: Collaged Graphic Print stack -->
+      <div class="lg:col-span-5 reveal reveal-left flex justify-center relative">
+        <!-- Wrapper defines the rotation of the portrait print -->
+        <div class="relative w-full max-w-[320px] aspect-[3/4] hover-snap rotate-[-2.5deg] origin-center">
+          
+          <!-- Clean Photo 1 (Parallelogram) -->
+          <div class="absolute inset-0 bg-black border-2 border-[var(--color-chalk-white)] z-20 clip-parallelogram overflow-hidden group">
+            <Image
+              src={profileImg}
+              width={600}
+              format="webp"
+              quality={85}
+              loading="eager"
+              alt="Aristyo Rahardiyan Profile"
+              class="w-full h-full object-cover object-[35%_center]"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: Bio + Timeline with asymmetrical alignment -->
+      <div class="lg:col-span-7 reveal reveal-right mt-8 lg:mt-0">
+        <div class="space-y-12 max-w-xl lg:pl-8">
+          
+          <!-- About -->
+          <div class="relative">
+            <div class="absolute -left-6 -top-4 font-bebas text-4xl text-[var(--color-burnt-crimson)]/20 select-none pointer-events-none" aria-hidden="true">// ARCHIVE IDENTITY</div>
+            <h3 class="font-bebas text-2xl tracking-widest text-[var(--color-chalk-white)] text-shadow-stamp">About</h3>
+            <div class="mt-4 border-l-2 border-[var(--color-red-blast)] pl-6 space-y-4">
+              <p class="font-inter text-sm leading-relaxed text-[var(--color-warm-gray)]">
+                A multidisciplinary creative working at the intersection of visual media, technology, and design.
+                Based in Shibuya, crafting work that merges raw aesthetic with precision engineering.
+              </p>
+              <p class="font-inter text-sm leading-relaxed text-[var(--color-warm-gray)]">
+                Building experiences through the lens of photography, moving through code architecture,
+                and shaping sound — always pushing boundaries between analog texture and digital craft.
+              </p>
+            </div>
+          </div>
+
+          <!-- Education (Clean Editorial Panel) -->
+          <div class="w-full max-w-[340px] sm:max-w-[380px]">
+            <div class="relative group hover-snap rotate-[-1.5deg] origin-center">
+              <!-- Layer 1: Clean Panel -->
+              <div class="relative border-2 border-[var(--color-chalk-white)] pl-10 pr-6 py-6 bg-[var(--color-chalk-white)] text-[var(--color-void-black)] clip-parallelogram z-10 transition-transform">
+                <!-- Inner content -->
+                <div class="relative">
+                  <h3 class="font-bebas text-3xl tracking-wider text-[var(--color-void-black)] mb-6 transform -skew-x-6 italic">Education</h3>
+                  <div class="space-y-6">
+                    <div>
+                      <span class="inline-block font-mono font-bold text-[10px] text-[var(--color-chalk-white)] bg-[var(--color-void-black)] px-2 py-0.5 clip-parallelogram">2021—24</span>
+                      <p class="font-space text-sm font-black text-[var(--color-void-black)] mt-1">Mathematics and Natural Sciences</p>
+                      <p class="font-inter text-xs text-[var(--color-deep-brown)] font-bold">SMA Negeri 2 Kuta Selatan</p>
+                    </div>
+                    <div>
+                      <span class="inline-block font-mono font-bold text-[10px] text-[var(--color-chalk-white)] bg-[var(--color-void-black)] px-2 py-0.5 clip-parallelogram">2024—NOW</span>
+                      <p class="font-space text-sm font-black text-[var(--color-void-black)] mt-1">Software Engineering Technology</p>
+                      <p class="font-inter text-xs text-[var(--color-deep-brown)] font-bold">Politeknik Negeri Bali</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stack (Graphic blocks) -->
+          <div class="pt-8 relative z-30">
+            <h3 class="font-space text-[12px] font-bold tracking-[0.2em] text-[var(--color-void-black)] bg-[var(--color-red-blast)] px-4 py-1 uppercase mb-6 inline-block clip-parallelogram transform -skew-x-6">SYSTEM HARDWARE & STACK</h3>
+            <div class="flex flex-wrap gap-3">
+              {['TypeScript', 'Astro', 'React', 'Python', 'Figma', 'Adobe CC', 'Arduino', 'Rust'].map((tech, i) => {
+                const rot = ['rotate-[3deg]', 'rotate-[-3deg]', 'rotate-[2.5deg]', 'rotate-[-2.5deg]', 'rotate-[3.5deg]', 'rotate-[-3.5deg]'][i % 6];
+                return (
+                  <div class={`${rot} hover-snap`}>
+                    <span class="border-2 border-[var(--color-steel-black)] px-4 py-2 font-space font-bold text-xs text-[var(--color-chalk-white)] bg-[var(--color-void-black)] hover:bg-[var(--color-chalk-white)] hover:text-[var(--color-void-black)] hover:border-[var(--color-chalk-white)] transition-colors select-none block">
+                      {tech}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Bottom diagonal cut -->
+  <div class="absolute bottom-0 left-0 right-0 h-12 bg-[var(--color-deep-brown)] clip-diagonal-cut"></div>
+</section>

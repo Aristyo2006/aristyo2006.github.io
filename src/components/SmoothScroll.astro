@@ -1,0 +1,59 @@
+---
+---
+
+<script>
+  import Lenis from 'lenis';
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const w = window as any;
+  if (w.__lenisCleanup) {
+    w.__lenisCleanup();
+  }
+  if (w.__lenisPageLoadHandler) {
+    document.removeEventListener('astro:page-load', w.__lenisPageLoadHandler);
+  }
+
+  function initSmoothScroll() {
+    if (w.__lenisCleanup) {
+      w.__lenisCleanup();
+    }
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    const updateLenis = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(updateLenis);
+    gsap.ticker.lagSmoothing(0);
+
+    w.__lenisInstance = lenis;
+
+    w.__lenisCleanup = () => {
+      lenis.destroy();
+      gsap.ticker.remove(updateLenis);
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSmoothScroll, { once: true });
+  } else {
+    initSmoothScroll();
+  }
+
+  w.__lenisPageLoadHandler = initSmoothScroll;
+  document.addEventListener('astro:page-load', w.__lenisPageLoadHandler);
+</script>

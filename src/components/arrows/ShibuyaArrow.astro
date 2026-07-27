@@ -1,0 +1,520 @@
+---
+interface Props {
+  name:
+    | 'long-nav'
+    | 'small-pointer'
+    | 'folded'
+    | 'double'
+    | 'triple'
+    | 'vertical'
+    | 'corner'
+    | 'scroll'
+    | 'transition'
+    | 'diagonal'
+    | 'wide-block'
+    | 'thin-tech';
+  class?: string;
+  size?: number | string;
+}
+
+const { name, class: className = '', size } = Astro.props;
+---
+
+{
+  name === 'long-nav' && (
+    <svg
+      viewBox="0 0 400 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-long-nav ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Base Shadow / Skew Offset Layer -->
+      <polygon points="10,18 290,18 350,48 290,78 10,78 40,48" fill="#090909" transform="translate(4, 4)" />
+      
+      <!-- Main Red Arrow Body -->
+      <polygon points="10,14 290,14 350,44 290,74 10,74 40,44" fill="#D63A1C" />
+      
+      <!-- White Geometry Overlay Cut -->
+      <polygon points="45,18 280,18 335,44 280,70 45,70 70,44" fill="#F5F5F5" />
+      
+      <!-- Inner Dark Core Polygon -->
+      <polygon points="65,24 265,24 310,44 265,64 65,64 85,44" fill="#090909" />
+
+      <!-- Thin White Framing Lines -->
+      <polyline points="5,10 295,10 360,44 295,78 5,78" stroke="#F5F5F5" stroke-width="1.5" stroke-dasharray="8 4 2 4" />
+
+      <!-- Barcode Fragment -->
+      <g fill="#F5F5F5" transform="translate(85, 34)">
+        <rect x="0" y="0" width="3" height="20" />
+        <rect x="5" y="0" width="1.5" height="20" />
+        <rect x="8" y="0" width="4" height="20" />
+        <rect x="14" y="0" width="2" height="20" />
+        <rect x="18" y="0" width="5" height="20" />
+        <rect x="25" y="0" width="1" height="20" />
+        <rect x="28" y="0" width="3" height="20" />
+      </g>
+
+      <!-- Technical Micro Typography -->
+      <text x="125" y="44" font-family="'Space Grotesk', 'Courier New', monospace" font-size="11" font-weight="900" fill="#D63A1C" letter-spacing="3">
+        NAV // 01
+      </text>
+      <text x="125" y="55" font-family="'Space Grotesk', 'Courier New', monospace" font-size="7" font-weight="700" fill="#F5F5F5" letter-spacing="1">
+        SYS_REF_#35.6580N • SPEED: 100%
+      </text>
+
+      <!-- Forward Arrowhead Accent Triangles -->
+      <polygon points="325,44 305,34 308,44 305,54" fill="#D63A1C" />
+      <polygon points="340,44 322,32 325,44 322,56" fill="#F5F5F5" />
+      
+      <!-- Stencil Notch Details -->
+      <rect x="285" y="14" width="6" height="6" fill="#090909" />
+      <rect x="285" y="68" width="6" height="6" fill="#090909" />
+    </svg>
+  )
+}
+
+{
+  name === 'small-pointer' && (
+    <svg
+      viewBox="0 0 120 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-small-pointer ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Background Polygon Shadow -->
+      <polygon points="5,8 75,8 115,30 75,52 5,52 20,30" fill="#090909" transform="translate(3, 3)" />
+      
+      <!-- Main Red Chevron -->
+      <polygon points="5,8 75,8 115,30 75,52 5,52 20,30" fill="#D63A1C" stroke="#F5F5F5" stroke-width="1.5" />
+      
+      <!-- Cut Accent Polygon -->
+      <polygon points="30,14 70,14 100,30 70,46 30,46 42,30" fill="#090909" />
+      
+      <!-- Inner White Stencil Pointer -->
+      <polygon points="55,20 82,20 97,30 82,40 55,40 63,30" fill="#F5F5F5" />
+
+      <!-- Japanese Micro Text & Stencil -->
+      <text x="34" y="33" font-family="'Space Grotesk', monospace" font-size="8" font-weight="900" fill="#D63A1C">
+        NEXT
+      </text>
+      
+      <!-- Grid Mark Corner Crosses -->
+      <line x1="2" y1="2" x2="8" y2="2" stroke="#F5F5F5" stroke-width="1" />
+      <line x1="2" y1="2" x2="2" y2="8" stroke="#F5F5F5" stroke-width="1" />
+    </svg>
+  )
+}
+
+{
+  name === 'folded' && (
+    <svg
+      viewBox="0 0 180 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-folded ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Fold 1: Base Strip (Dark Steel) -->
+      <polygon points="10,80 70,80 110,20 50,20" fill="#1C1C1C" stroke="#F5F5F5" stroke-width="1" />
+      
+      <!-- Fold 2: Red Overlapping Arrow Ribbon -->
+      <polygon points="50,20 110,20 160,70 100,70" fill="#D63A1C" stroke="#090909" stroke-width="1.5" />
+
+      <!-- Fold 3: Arrowhead Tip -->
+      <polygon points="100,70 160,70 175,50 145,20" fill="#F5F5F5" />
+
+      <!-- Fold Shadow Underlay -->
+      <polygon points="50,20 54,26 104,26 100,20" fill="#090909" opacity="0.6" />
+
+      <!-- Stencil Label -->
+      <text x="65" y="55" font-family="'Space Grotesk', monospace" font-size="9" font-weight="900" fill="#F5F5F5" transform="rotate(-45 65 55)">
+        ANGLE // 90°
+      </text>
+    </svg>
+  )
+}
+
+{
+  name === 'segmented' && (
+    <svg
+      viewBox="0 0 260 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-segmented ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Segment 1: Tail Block -->
+      <polygon points="10,10 40,10 50,30 40,50 10,50 20,30" fill="#1C1C1C" stroke="#F5F5F5" stroke-width="1" />
+      
+      <!-- Segment 2: Middle Red Accent Block -->
+      <polygon points="55,10 95,10 105,30 95,50 55,50 65,30" fill="#D63A1C" />
+
+      <!-- Segment 3: Large Body Strip -->
+      <polygon points="110,10 190,10 200,30 190,50 110,50 120,30" fill="#F5F5F5" />
+      
+      <!-- Segment 4: Fast Arrow Head -->
+      <polygon points="205,10 235,10 255,30 235,50 205,50 215,30" fill="#D63A1C" />
+
+      <!-- Data Dots between segments -->
+      <circle cx="48" cy="30" r="2" fill="#D63A1C" />
+      <circle cx="103" cy="30" r="2" fill="#F5F5F5" />
+      <circle cx="198" cy="30" r="2" fill="#D63A1C" />
+
+      <!-- Typography inside body segment -->
+      <text x="130" y="34" font-family="'Space Grotesk', monospace" font-size="10" font-weight="900" fill="#090909" letter-spacing="2">
+        SEG-04 // FAST
+      </text>
+    </svg>
+  )
+}
+
+{
+  name === 'double' && (
+    <svg
+      viewBox="0 0 160 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-double ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Rear Chevron (Red) -->
+      <polygon points="10,10 60,10 100,40 60,70 10,70 35,40" fill="#D63A1C" stroke="#F5F5F5" stroke-width="1" />
+      <polygon points="28,20 52,20 78,40 52,60 28,60 44,40" fill="#090909" />
+
+      <!-- Front Chevron (White Offset) -->
+      <polygon points="60,10 110,10 150,40 110,70 60,70 85,40" fill="#F5F5F5" stroke="#090909" stroke-width="2" />
+      <polygon points="78,20 102,20 128,40 102,60 78,60 94,40" fill="#D63A1C" />
+
+      <!-- Micro Stencil Details -->
+      <text x="32" y="43" font-family="'Space Grotesk', monospace" font-size="7" font-weight="900" fill="#F5F5F5">
+        01
+      </text>
+      <text x="82" y="43" font-family="'Space Grotesk', monospace" font-size="7" font-weight="900" fill="#F5F5F5">
+        02
+      </text>
+      
+      <!-- Sub-pixel Dash Lines -->
+      <line x1="5" y1="40" x2="155" y2="40" stroke="#D63A1C" stroke-width="1" stroke-dasharray="3 3" opacity="0.7" />
+    </svg>
+  )
+}
+
+{
+  name === 'triple' && (
+    <svg
+      viewBox="0 0 220 70"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-triple ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Chevron 1 (Tail - Dark) -->
+      <polygon points="10,10 50,10 85,35 50,60 10,60 45,35" fill="#1C1C1C" stroke="#F5F5F5" stroke-width="1.5" />
+      
+      <!-- Chevron 2 (Middle - Red Blast) -->
+      <polygon points="65,10 105,10 140,35 105,60 65,60 100,35" fill="#D63A1C" />
+
+      <!-- Chevron 3 (Head - Chalk White) -->
+      <polygon points="120,10 160,10 195,35 160,60 120,60 155,35" fill="#F5F5F5" />
+
+      <!-- Outer Speed Notch Outlines -->
+      <polyline points="180,10 210,35 180,60" stroke="#D63A1C" stroke-width="3" stroke-linecap="square" />
+
+      <!-- Accelerator Stencil Text -->
+      <text x="75" y="38" font-family="'Space Grotesk', monospace" font-size="9" font-weight="900" fill="#F5F5F5">
+        ACCEL
+      </text>
+    </svg>
+  )
+}
+
+{
+  name === 'vertical' && (
+    <svg
+      viewBox="0 0 80 220"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-vertical ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Main Vertical Shaft Box -->
+      <rect x="25" y="10" width="30" height="140" fill="#090909" stroke="#F5F5F5" stroke-width="1.5" />
+      
+      <!-- Red Inner Velocity Bar -->
+      <rect x="33" y="20" width="14" height="120" fill="#D63A1C" />
+
+      <!-- Downward Arrowhead Polygon -->
+      <polygon points="10,140 70,140 40,205" fill="#D63A1C" stroke="#F5F5F5" stroke-width="2" />
+      
+      <!-- Inner White Stencil Tip -->
+      <polygon points="24,148 56,148 40,185" fill="#F5F5F5" />
+
+      <!-- Vertical Metro Station Stencil Text -->
+      <text x="43" y="40" font-family="'Space Grotesk', monospace" font-size="9" font-weight="900" fill="#F5F5F5" writing-mode="tb" letter-spacing="3">
+        SUBWAY
+      </text>
+      <text x="43" y="105" font-family="'Space Grotesk', monospace" font-size="8" font-weight="900" fill="#090909" writing-mode="tb">
+        DN
+      </text>
+    </svg>
+  )
+}
+
+{
+  name === 'split' && (
+    <svg
+      viewBox="0 0 240 70"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-split ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Top Half Chevron -->
+      <polygon points="10,5 170,5 210,30 160,30 10,30" fill="#D63A1C" />
+      
+      <!-- Bottom Half Chevron (Offset horizontally) -->
+      <polygon points="30,40 180,40 230,65 190,65 30,65" fill="#F5F5F5" />
+
+      <!-- Center Split Gap Line with hazard ticks -->
+      <line x1="10" y1="35" x2="220" y2="35" stroke="#090909" stroke-width="4" />
+
+      <text x="30" y="22" font-family="'Space Grotesk', monospace" font-size="8" font-weight="900" fill="#F5F5F5">
+        DIRECTION
+      </text>
+    </svg>
+  )
+}
+
+{
+  name === 'curved' && (
+    <svg
+      viewBox="0 0 160 140"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-curved ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- 90-Degree Curved Highway Arrow Path -->
+      <path
+        d="M 20 120 L 20 60 Q 20 20 60 20 L 110 20"
+        stroke="#D63A1C"
+        stroke-width="24"
+        stroke-linecap="square"
+        fill="none"
+      />
+      <path
+        d="M 20 120 L 20 60 Q 20 20 60 20 L 110 20"
+        stroke="#F5F5F5"
+        stroke-width="4"
+        stroke-linecap="square"
+        fill="none"
+      />
+
+      <!-- Arrowhead at Right End -->
+      <polygon points="105,2 150,20 105,38 118,20" fill="#D63A1C" stroke="#F5F5F5" stroke-width="1.5" />
+
+      <!-- Corner Stencil Text -->
+      <text x="35" y="55" font-family="'Space Grotesk', monospace" font-size="8" font-weight="900" fill="#F5F5F5">
+        TURN
+      </text>
+    </svg>
+  )
+}
+
+{
+  name === 'corner' && (
+    <svg
+      viewBox="0 0 140 140"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-corner ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Outer L-Bracket Frame (White) -->
+      <path d="M 20 120 L 20 40 L 80 40 L 80 20 L 125 55 L 80 90 L 80 70 L 40 70 L 40 120 Z" fill="#F5F5F5" stroke="#090909" stroke-width="2" />
+
+      <!-- Inner Red Accent Polygon -->
+      <path d="M 30 110 L 30 50 L 85 50 L 85 35 L 115 55 L 85 75 L 85 60 L 50 60 L 50 110 Z" fill="#D63A1C" />
+
+      <!-- Dark Core Inset -->
+      <path d="M 35 100 L 35 55 L 88 55 L 88 45 L 105 55 L 88 65 L 88 58 L 55 58 L 55 100 Z" fill="#090909" />
+
+      <!-- Wayfinding Metadata Typography -->
+      <text x="24" y="32" font-family="'Space Grotesk', monospace" font-size="8" font-weight="900" fill="#D63A1C">
+        CORNER // 90°
+      </text>
+      <text x="45" y="90" font-family="'Space Grotesk', monospace" font-size="7" font-weight="700" fill="#F5F5F5">
+        TURN
+      </text>
+
+      <!-- Corner Crosshair Targets -->
+      <circle cx="20" cy="20" r="4" stroke="#D63A1C" stroke-width="1" fill="none" />
+      <line x1="20" y1="12" x2="20" y2="28" stroke="#D63A1C" stroke-width="1" />
+      <line x1="12" y1="20" x2="28" y2="20" stroke="#D63A1C" stroke-width="1" />
+    </svg>
+  )
+}
+
+{
+  name === 'scroll' && (
+    <svg
+      viewBox="0 0 50 180"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-scroll ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Track Rail -->
+      <line x1="25" y1="10" x2="25" y2="140" stroke="#F5F5F5" stroke-width="2" stroke-dasharray="4 4" />
+
+      <!-- Pulse Marker (Red Box) -->
+      <rect x="15" y="40" width="20" height="24" fill="#D63A1C" stroke="#F5F5F5" stroke-width="1.5" />
+      <polygon points="25,48 31,56 19,56" fill="#F5F5F5" />
+
+      <!-- Downward Chevron Head -->
+      <polygon points="5,140 45,140 25,170" fill="#D63A1C" stroke="#F5F5F5" stroke-width="1.5" />
+
+      <!-- Vertical Stencil -->
+      <text x="29" y="80" font-family="'Space Grotesk', monospace" font-size="8" font-weight="900" fill="#F5F5F5" writing-mode="tb" letter-spacing="2">
+        SCROLL
+      </text>
+    </svg>
+  )
+}
+
+{
+  name === 'chapter' && (
+    <svg
+      viewBox="0 0 280 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-chapter ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Parallelogram Background Banner -->
+      <polygon points="20,10 240,10 270,70 50,70" fill="#090909" stroke="#D63A1C" stroke-width="2" />
+      
+      <!-- Inner Red Accent Slash -->
+      <polygon points="45,16 65,16 45,64 25,64" fill="#D63A1C" />
+
+      <!-- Massive Forward Arrow Pointer -->
+      <polygon points="210,20 250,40 210,60 225,40" fill="#F5F5F5" />
+
+      <!-- Chapter Navigation Text -->
+      <text x="75" y="44" font-family="'Space Grotesk', monospace" font-size="11" font-weight="900" fill="#F5F5F5" letter-spacing="2">
+        CH.02 → CH.03
+      </text>
+    </svg>
+  )
+}
+
+{
+  name === 'transition' && (
+    <svg
+      viewBox="0 0 360 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-transition ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Heavy Block Outer Boundary -->
+      <polygon points="10,10 260,10 340,50 260,90 10,90 50,50" fill="#090909" stroke="#F5F5F5" stroke-width="2" />
+
+      <!-- Red Diagonal Hazard Stripe Fill (Polygon Masking) -->
+      <g clip-path="url(#trans-clip)">
+        <polygon points="10,10 260,10 340,50 260,90 10,90 50,50" fill="#D63A1C" />
+        <!-- Diagonal Black Stripes -->
+        <path d="M -20,0 L 20,120 M 20,0 L 60,120 M 60,0 L 100,120 M 100,0 L 140,120 M 140,0 L 180,120 M 180,0 L 220,120 M 220,0 L 260,120 M 260,0 L 300,120 M 300,0 L 340,120" stroke="#090909" stroke-width="14" />
+      </g>
+
+      <!-- Center White Editorial Text Plate -->
+      <polygon points="65,22 245,22 295,50 245,78 65,78 95,50" fill="#F5F5F5" stroke="#090909" stroke-width="2" />
+
+      <!-- Text & Markings -->
+      <text x="105" y="46" font-family="'Space Grotesk', monospace" font-size="12" font-weight="900" fill="#090909" letter-spacing="2">
+        SECTION TRANSITION
+      </text>
+      <text x="105" y="64" font-family="'Space Grotesk', monospace" font-size="9" font-weight="900" fill="#D63A1C" letter-spacing="1">
+        CH.02 → CH.03 // PROCEED TO NEXT SECTION
+      </text>
+
+      <clipPath id="trans-clip">
+        <polygon points="10,10 260,10 340,50 260,90 10,90 50,50" />
+      </clipPath>
+    </svg>
+  )
+}
+
+{
+  name === 'diagonal' && (
+    <svg
+      viewBox="0 0 160 160"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-diagonal ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- 45° Diagonal Arrow Shaft -->
+      <polygon points="20,150 130,40 140,50 30,160" fill="#D63A1C" />
+      <polygon points="10,140 120,30 126,36 16,146" fill="#F5F5F5" />
+
+      <!-- Explosive Top-Right Arrow Head -->
+      <polygon points="110,10 155,10 155,55 135,35 110,60" fill="#D63A1C" stroke="#F5F5F5" stroke-width="2" />
+
+      <!-- Racing Livery Number #89 -->
+      <text x="35" y="100" font-family="'Bebas Neue', 'Space Grotesk', sans-serif" font-size="24" font-weight="900" fill="#F5F5F5" transform="rotate(-45 35 100)">
+        #89
+      </text>
+      <text x="70" y="130" font-family="'Space Grotesk', monospace" font-size="8" font-weight="900" fill="#D63A1C" transform="rotate(-45 70 130)">
+        NEO_TOKYO
+      </text>
+    </svg>
+  )
+}
+
+{
+  name === 'wide-block' && (
+    <svg
+      viewBox="0 0 320 90"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-wide-block ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Right Arrowhead Stencil Stripes -->
+      <polygon points="230,30 260,55 230,80" fill="#F5F5F5" />
+      <polygon points="200,35 220,55 200,75" fill="#090909" />
+    </svg>
+  )
+}
+
+{
+  name === 'thin-tech' && (
+    <svg
+      viewBox="0 0 300 50"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class={`shibuya-arrow arrow-thin-tech ${className}`}
+      style={size ? `width: ${size}px; height: auto;` : undefined}
+    >
+      <!-- Technical Axis Line -->
+      <line x1="10" y1="25" x2="280" y2="25" stroke="#F5F5F5" stroke-width="1.5" />
+      
+      <!-- Ruler Ticks -->
+      <path d="M 20,20 L 20,30 M 40,22 L 40,28 M 60,20 L 60,30 M 80,22 L 80,28 M 100,20 L 100,30 M 120,22 L 120,28 M 140,20 L 140,30 M 160,22 L 160,28 M 180,20 L 180,30 M 200,22 L 200,28 M 220,20 L 220,30 M 240,22 L 240,28" stroke="#D63A1C" stroke-width="1" />
+
+      <!-- Minimalist Precision Pointer Tip -->
+      <polygon points="260,12 295,25 260,38 270,25" fill="#D63A1C" stroke="#F5F5F5" stroke-width="1" />
+      
+      <!-- Coordinate Labels -->
+      <text x="20" y="15" font-family="'Space Grotesk', monospace" font-size="7" font-weight="700" fill="#F5F5F5">
+        LOC_35.6580N // 139.7016E
+      </text>
+      <text x="180" y="15" font-family="'Space Grotesk', monospace" font-size="7" font-weight="900" fill="#D63A1C">
+        PRECISION_NAV →
+      </text>
+    </svg>
+  )
+}

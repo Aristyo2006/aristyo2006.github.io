@@ -1,0 +1,244 @@
+---
+import { Image } from 'astro:assets';
+// Placeholder imports for gallery photos. Update these paths when you have the photos.
+// e.g. import foto1 from '@assets/images/foto1.jpg';
+import foto1 from '@assets/images/foto1.jpg';
+import foto2 from '@assets/images/foto2.jpg';
+import foto3 from '@assets/images/foto3.jpg';
+import foto4 from '@assets/images/foto4.jpg';
+import foto5 from '@assets/images/foto5.jpg';
+---
+
+<section
+  id="gallery"
+  data-scroll-section="gallery"
+  class="relative bg-[var(--color-void-black)]/60 py-28 sm:py-36 overflow-hidden jsr-bg-stripes"
+  aria-labelledby="gallery-heading"
+>
+  <!-- Background Graphic -->
+  <div class="absolute inset-0 jsr-bg-stripes opacity-10 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+
+    <!-- Section Header (High impact layout) -->
+    <div class="mb-20 flex items-baseline gap-4 relative">
+      <div class="absolute -inset-2 bg-[var(--color-burnt-crimson)] clip-parallelogram -z-10 opacity-30"></div>
+      <span class="font-mono text-xs tracking-wider font-bold text-[var(--color-void-black)] bg-[var(--color-red-blast)] px-3 py-1 clip-parallelogram transform -skew-x-6">CH.04 // EXPOSURE</span>
+      <h2 id="gallery-heading" class="font-bebas text-6xl tracking-widest text-[var(--color-chalk-white)] sm:text-7xl text-shadow-hard italic transform -skew-x-6">
+        Gallery
+      </h2>
+      <div class="h-[2px] flex-1 bg-[var(--color-burnt-crimson)] ml-4"></div>
+    </div>
+
+    <!-- Editorial Asymmetric Grid (Images overlapping heavily with slanted clip-paths) -->
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-[auto_auto] items-start" role="list" aria-label="Gallery grid">
+
+      <!-- Gallery Item 1 -->
+      <div class="gallery-item lg:row-span-2 reveal reveal-up z-10 relative pb-4 hover-snap rotate-[-2deg] origin-center" role="listitem" tabindex="0" aria-label="Gallery image: Muaya Beach @ 7am" data-label="GALLERY 01" data-highres={foto1.src} data-type="[Nikon D5300 - ISO5000 1/125s F22 18mm]">
+        <!-- Physical Photograph Card -->
+        <div class="relative group cursor-pointer bg-[var(--color-chalk-white)] p-3 pb-3 clip-parallelogram transition-all duration-300">
+          <!-- Image area -->
+          <div class="bg-black overflow-hidden clip-parallelogram relative">
+            <Image src={foto1} width={600} format="webp" quality={80} loading="eager" alt="Muaya Beach @ 7am" class="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute bottom-0 left-0 right-0 bg-[var(--color-void-black)]/95 pl-6 pr-12 py-4 font-space text-[12px] font-bold tracking-wider text-[var(--color-chalk-white)] uppercase backdrop-blur-sm z-30 translate-y-full group-hover:translate-y-0 transition-transform">
+              Muaya Beach @ 7am
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Item 2 -->
+      <div class="gallery-item reveal reveal-up z-20 lg:-mt-6 relative pb-4 hover-snap-reverse rotate-[2deg] origin-center" role="listitem" tabindex="0" aria-label="Gallery image: Eyes of Cat" data-label="GALLERY 02" data-highres={foto2.src} data-type="[Nikon D7000 - ISO800 1/400s F5.6 200mm]">
+        <!-- Physical Photograph Card -->
+        <div class="relative group cursor-pointer bg-[var(--color-chalk-white)] p-3 pb-3 clip-parallelogram transition-all duration-300">
+          <!-- Image area -->
+          <div class="bg-black overflow-hidden clip-parallelogram relative">
+            <Image src={foto2} width={600} format="webp" quality={80} loading="eager" alt="Eyes of Cat" class="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute bottom-0 left-0 right-0 bg-[var(--color-void-black)]/95 pl-6 pr-12 py-4 font-space text-[10px] font-bold tracking-wider text-[var(--color-chalk-white)] uppercase translate-y-full group-hover:translate-y-0 transition-transform z-30">
+              Eyes of Cat
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Item 3 -->
+      <div class="gallery-item reveal reveal-up z-10 lg:translate-x-8 relative pb-4 hover-snap rotate-[-1.5deg] origin-center" role="listitem" tabindex="0" aria-label="Gallery image: Ogoh-ogoh Parade" data-label="GALLERY 03" data-highres={foto3.src} data-type="[Nikon D7000 - 1/125s ISO200 F3.8 22mm]">
+        <!-- Physical Photograph Card -->
+        <div class="relative group cursor-pointer bg-[var(--color-chalk-white)] p-3 pb-3 clip-parallelogram-reverse transition-all duration-300">
+          <!-- Image area -->
+          <div class="bg-black overflow-hidden clip-parallelogram-reverse relative">
+            <Image src={foto3} width={600} format="webp" quality={80} loading="eager" alt="Ogoh-ogoh Parade" class="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute bottom-0 left-0 right-0 bg-[var(--color-void-black)]/95 pl-12 pr-6 py-4 font-space text-[10px] font-bold tracking-wider text-[var(--color-chalk-white)] uppercase translate-y-full group-hover:translate-y-0 transition-transform z-30">
+              Ogoh-ogoh Parade
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Item 4 -->
+      <div class="gallery-item sm:col-span-2 lg:col-span-1 reveal reveal-up z-20 lg:translate-y-8 relative pb-4 hover-snap-reverse rotate-[3deg] origin-center" role="listitem" tabindex="0" aria-label="Gallery image: Behind the Shadow" data-label="GALLERY 04" data-highres={foto4.src} data-type="[Nikon D5300 1/50s ISO 10000 F1.8 50mm]">
+        <!-- Physical Photograph Card -->
+        <div class="relative group cursor-pointer bg-[var(--color-chalk-white)] p-3 pb-3 clip-parallelogram transition-all duration-300">
+          <!-- Image area -->
+          <div class="bg-black overflow-hidden clip-parallelogram relative">
+            <Image src={foto4} width={800} format="webp" quality={80} loading="eager" alt="Behind the Shadow" class="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute bottom-0 left-0 right-0 bg-[var(--color-void-black)]/95 pl-6 pr-12 py-4 font-space text-[10px] font-bold tracking-wider text-[var(--color-chalk-white)] uppercase translate-y-full group-hover:translate-y-0 transition-transform z-30">
+              Behind the Shadow
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Item 5 -->
+      <div class="gallery-item sm:col-span-2 lg:col-span-1 reveal reveal-up z-10 lg:-translate-x-6 lg:translate-y-4 relative pb-4 hover-snap rotate-[-2.5deg] origin-center" role="listitem" tabindex="0" aria-label="Gallery image: Looking Somewhere" data-label="GALLERY 05" data-highres={foto5.src} data-type="[Canon EOS 5D Mark II 1/320 ISO500 F20 50mm]">
+        <!-- Physical Photograph Card -->
+        <div class="relative group cursor-pointer bg-[var(--color-chalk-white)] p-3 pb-3 clip-parallelogram transition-all duration-300">
+          <!-- Image area -->
+          <div class="bg-black overflow-hidden clip-parallelogram relative">
+            <Image src={foto5} width={600} format="webp" quality={80} loading="eager" alt="Looking Somewhere" class="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute bottom-0 left-0 right-0 bg-[var(--color-void-black)]/95 pl-6 pr-12 py-4 font-space text-[10px] font-bold tracking-wider text-[var(--color-chalk-white)] uppercase translate-y-full group-hover:translate-y-0 transition-transform z-30">
+              Looking Somewhere
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA: View More on Instagram -->
+    <div class="mt-16 sm:mt-24 flex justify-center reveal reveal-up relative z-20">
+      <div class="relative group">
+        <!-- Colored Backing Shadow -->
+        <div class="absolute inset-0 bg-[var(--color-burnt-crimson)] translate-x-2 translate-y-2 clip-parallelogram transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+        <a
+          href="https://www.instagram.com/aristyo_2006/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative flex items-center justify-center text-center bg-[var(--color-void-black)] border-2 border-[var(--color-chalk-white)] px-10 py-4 font-space text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-[var(--color-chalk-white)] transition-all hover:bg-[var(--color-chalk-white)] hover:text-[var(--color-void-black)] clip-parallelogram"
+          data-magnetic="0.15"
+        >
+          <span>View More Shots on Instagram ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox (JSR Geometry) -->
+  <div
+    id="lightbox"
+    class="pointer-events-none fixed inset-0 z-[200] flex items-center justify-center bg-[var(--color-void-black)]/95 opacity-0 backdrop-blur-md transition-opacity duration-300 p-2 sm:p-6"
+    aria-hidden="true"
+    role="dialog"
+    aria-label="Image lightbox"
+  >
+    <button
+      id="lightbox-close"
+      class="absolute right-3 top-3 sm:right-6 sm:top-6 z-30 border-2 border-[var(--color-void-black)] bg-[var(--color-chalk-white)] px-3 py-1.5 sm:px-6 sm:py-2 font-space text-xs sm:text-sm font-black text-[var(--color-void-black)] transition-all hover:bg-[var(--color-void-black)] hover:text-[var(--color-chalk-white)] hover:border-[var(--color-chalk-white)] clip-parallelogram hover-snap"
+      aria-label="Close lightbox"
+    >
+      CLOSE // ✕
+    </button>
+    <div id="lightbox-content" class="w-full max-w-5xl max-h-[92vh] flex items-center justify-center"></div>
+  </div>
+</section>
+
+<script>
+  const w = window as any;
+  if (w.__galleryLightboxCleanup) {
+    w.__galleryLightboxCleanup();
+  }
+  if (w.__galleryLightboxPageLoadHandler) {
+    document.removeEventListener('astro:page-load', w.__galleryLightboxPageLoadHandler);
+  }
+
+  function initGalleryLightbox() {
+    if (w.__galleryLightboxCleanup) {
+      w.__galleryLightboxCleanup();
+    }
+
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    if (!lightbox || !lightboxContent || !lightboxClose) return;
+
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+    const scanlinesOverlay = document.querySelector('.scanlines-overlay') as HTMLElement | null;
+
+    const closeLightbox = () => {
+      lightbox.classList.add('pointer-events-none', 'opacity-0');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (scanlinesOverlay) scanlinesOverlay.style.display = '';
+    };
+
+    galleryItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const imgEl = item.querySelector('img') as HTMLImageElement | null;
+        const highresUrl = item.getAttribute('data-highres');
+        const imgUrl = highresUrl || (imgEl ? imgEl.src : '');
+        const label = item.getAttribute('data-label') || 'GALLERY';
+        const formatType = item.getAttribute('data-type') || '[35MM SLIDE]';
+        const captionEl = item.querySelector('[class*="font-space"]');
+        const caption = captionEl ? captionEl.textContent : '';
+
+        let innerContent = '';
+        if (imgUrl) {
+          innerContent = `
+            <div class="flex flex-col items-center justify-center gap-3 sm:gap-4 bg-[var(--color-chalk-white)] p-2.5 sm:p-6 w-full max-w-5xl text-center relative border-2 sm:border-4 border-[var(--color-void-black)] hard-shadow animate-[snapSlideIn_0.3s_ease-out]">
+              <div class="border-2 border-[var(--color-void-black)] bg-black overflow-hidden w-full max-h-[65vh] sm:max-h-[78vh] flex items-center justify-center relative">
+                <div class="absolute top-1.5 left-2 font-mono text-[7px] sm:text-[9px] text-[var(--color-warm-gray)] select-none pointer-events-none z-20">${formatType}</div>
+                <img src="${imgUrl}" alt="${(caption || 'Gallery Image').trim()}" class="max-w-full max-h-[63vh] sm:max-h-[76vh] object-contain z-10" />
+              </div>
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 sm:gap-4 border-2 border-[var(--color-void-black)] bg-[var(--color-chalk-white)] px-3 py-1.5 sm:px-4 sm:py-2 w-full text-left">
+                <span class="font-bebas text-xl sm:text-2xl text-[var(--color-void-black)] italic transform -skew-x-12">${(label || '').trim()}</span>
+                <p class="font-space font-bold text-[10px] sm:text-xs tracking-wider text-[var(--color-void-black)] uppercase">
+                  ${(caption || '').trim()}
+                </p>
+              </div>
+            </div>
+          `;
+        } else {
+          innerContent = `
+            <div class="flex flex-col items-center justify-center gap-4 sm:gap-6 border-2 border-[var(--color-void-black)] bg-[var(--color-chalk-white)] p-6 sm:p-12 w-full max-w-lg text-center relative clip-parallelogram animate-[snapSlideIn_0.3s_ease-out]">
+              <span class="font-bebas text-4xl sm:text-6xl text-[var(--color-void-black)] transform -skew-x-12 italic">${(label || '').trim()}</span>
+              <p class="font-inter font-bold text-xs sm:text-sm text-[var(--color-void-black)] leading-relaxed bg-[var(--color-chalk-white)] px-3 py-1.5 sm:px-4 sm:py-2 border-2 border-[var(--color-void-black)]">${(caption || '').trim()}</p>
+            </div>
+          `;
+        }
+
+        lightboxContent.innerHTML = innerContent;
+        lightbox.classList.remove('pointer-events-none', 'opacity-0');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        if (scanlinesOverlay) scanlinesOverlay.style.display = 'none';
+      }, { signal });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox, { signal });
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    }, { signal });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.getAttribute('aria-hidden') === 'false') {
+        closeLightbox();
+      }
+    }, { signal });
+
+    w.__galleryLightboxCleanup = () => {
+      abortController.abort();
+      closeLightbox();
+      lightboxContent.innerHTML = '';
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGalleryLightbox, { once: true });
+  } else {
+    initGalleryLightbox();
+  }
+  w.__galleryLightboxPageLoadHandler = initGalleryLightbox;
+  document.addEventListener('astro:page-load', w.__galleryLightboxPageLoadHandler);
+</script>

@@ -1,0 +1,312 @@
+---
+---
+
+<!-- Industrial Locator Cursor Container -->
+<div
+  id="industrial-locator-cursor"
+  class="hidden md:block"
+  aria-hidden="true"
+  style="position:fixed;top:0;left:0;z-index:99999;pointer-events:none;user-select:none;font-family:'Space Grotesk',monospace;will-change:transform;opacity:1;"
+>
+  <div
+    id="locator-frame"
+    style="position:relative;width:32px;height:32px;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);"
+  >
+    <!-- Corner Brackets -->
+    <div id="bracket-tl" style="position:absolute;top:0;left:0;width:10px;height:10px;border-top:1.5px solid #F5F5F5;border-left:1.5px solid #F5F5F5;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.8));"></div>
+    <div id="bracket-tr" style="position:absolute;top:0;right:0;width:10px;height:10px;border-top:1.5px solid #F5F5F5;border-right:1.5px solid #F5F5F5;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.8));"></div>
+    <div id="bracket-bl" style="position:absolute;bottom:0;left:0;width:10px;height:10px;border-bottom:1.5px solid #F5F5F5;border-left:1.5px solid #F5F5F5;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.8));"></div>
+    <div id="bracket-br" style="position:absolute;bottom:0;right:0;width:10px;height:10px;border-bottom:1.5px solid #F5F5F5;border-right:1.5px solid #F5F5F5;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.8));"></div>
+
+    <!-- Scanline -->
+    <div id="locator-scanline" style="position:absolute;left:0;right:0;top:50%;height:1.5px;background:#D63A1C;opacity:0;transform:translateY(-50%) scaleX(0);transform-origin:center;"></div>
+
+    <!-- Center Dot -->
+    <div id="locator-center-dot" style="width:6px;height:6px;background:#D63A1C;box-shadow:0 1px 3px rgba(0,0,0,0.9);position:relative;z-index:10;"></div>
+
+    <!-- Telemetry Code -->
+    <div id="locator-telemetry-tag" style="position:absolute;top:-14px;right:0;font-size:7px;font-weight:700;color:#A0A0A0;letter-spacing:0.1em;line-height:1;text-transform:uppercase;white-space:nowrap;">
+      <span id="locator-code-val">NAV-01</span>
+    </div>
+
+    <!-- Context Label Box -->
+    <div id="locator-label-box" style="position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:4px;background:rgba(11,11,11,0.95);border:1px solid #262626;padding:2px 6px;box-shadow:0 2px 6px rgba(0,0,0,0.5);backdrop-filter:blur(4px);opacity:0;white-space:nowrap;">
+      <span style="display:inline-block;width:4px;height:4px;background:#D63A1C;"></span>
+      <span id="locator-label-text" style="font-size:8px;font-weight:700;color:#F5F5F5;letter-spacing:0.12em;text-transform:uppercase;">OPEN</span>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  @media (max-width: 1024px), (pointer: coarse) {
+    #industrial-locator-cursor {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+  }
+
+  html.has-industrial-cursor,
+  html.has-industrial-cursor *,
+  html.has-industrial-cursor a,
+  html.has-industrial-cursor button,
+  html.has-industrial-cursor input,
+  html.has-industrial-cursor textarea,
+  html.has-industrial-cursor select,
+  html.has-industrial-cursor [role="button"] {
+    cursor: none !important;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const w = window as any;
+  if (w.__industrialLocatorCleanup) {
+    w.__industrialLocatorCleanup();
+  }
+  if (w.__industrialLocatorPageLoadHandler) {
+    document.removeEventListener('astro:page-load', w.__industrialLocatorPageLoadHandler);
+  }
+
+  function initIndustrialLocatorCursor() {
+    if (w.__industrialLocatorCleanup) {
+      w.__industrialLocatorCleanup();
+    }
+
+    const cursorEl = document.getElementById('industrial-locator-cursor');
+    const frameEl = document.getElementById('locator-frame');
+    const centerDot = document.getElementById('locator-center-dot');
+    const scanlineEl = document.getElementById('locator-scanline');
+    const labelBox = document.getElementById('locator-label-box');
+    const labelText = document.getElementById('locator-label-text');
+    const codeVal = document.getElementById('locator-code-val');
+
+    const bracketTL = document.getElementById('bracket-tl');
+    const bracketTR = document.getElementById('bracket-tr');
+    const bracketBL = document.getElementById('bracket-bl');
+    const bracketBR = document.getElementById('bracket-br');
+
+    const shouldUseNativeCursor =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(max-width: 1024px)').matches ||
+      window.innerWidth <= 1024;
+
+    if (shouldUseNativeCursor) {
+      if (cursorEl) {
+        cursorEl.style.display = 'none';
+        cursorEl.style.opacity = '0';
+        cursorEl.style.visibility = 'hidden';
+      }
+      document.documentElement.classList.remove('has-industrial-cursor');
+      return;
+    }
+
+    if (!cursorEl || !frameEl || !centerDot) {
+      console.warn('[IndustrialLocator] Cursor elements not found in DOM');
+      return;
+    }
+
+    cursorEl.style.display = 'block';
+    document.documentElement.classList.add('has-industrial-cursor');
+
+    const serialCodes = ['NAV-01', 'GRID_A4', 'SYNC', 'TRACK', 'NODE', 'CP-02', 'LOCK', 'REC'];
+    let serialIndex = 0;
+
+    let mouseX = window.innerWidth ? window.innerWidth / 2 : 0;
+    let mouseY = window.innerHeight ? window.innerHeight / 2 : 0;
+    let currentX = mouseX;
+    let currentY = mouseY;
+    let isClicking = false;
+    let activeState = 'none';
+
+    let clickResetTimer: ReturnType<typeof setTimeout> | null = null;
+    let idleTimer: ReturnType<typeof setTimeout> | null = null;
+    let idleAnimationTween: gsap.core.Timeline | null = null;
+
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
+    gsap.set(cursorEl, { opacity: 1, x: mouseX, y: mouseY, force3D: true });
+    const setCursorX = gsap.quickSetter(cursorEl, 'x', 'px');
+    const setCursorY = gsap.quickSetter(cursorEl, 'y', 'px');
+
+    function onMouseMove(e: MouseEvent) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      resetIdleTimer();
+    }
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true, signal });
+
+    const tickerFn = () => {
+      currentX += (mouseX - currentX) * 0.35;
+      currentY += (mouseY - currentY) * 0.35;
+      setCursorX(currentX);
+      setCursorY(currentY);
+    };
+    gsap.ticker.add(tickerFn);
+
+    function updateHoverState(target: HTMLElement | null) {
+      if (!target || typeof target.closest !== 'function') {
+        setHoverState('none');
+        return;
+      }
+
+      if (target.closest('#contact') || target.closest('[data-scroll-section="contact"]')) {
+        const contactInteractive = target.closest('#contact button, #contact a, #contact input, #contact textarea');
+        if (contactInteractive) {
+          setHoverState('contact', 'CONNECT');
+          return;
+        }
+      }
+
+      if (target.closest('input, textarea, select')) {
+        setHoverState('form', 'INPUT');
+        return;
+      }
+
+      const buttonEl = target.closest('button, [role="button"], .btn, input[type="submit"]');
+      if (buttonEl) {
+        const raw = buttonEl.getAttribute('aria-label') || buttonEl.textContent?.trim().toUpperCase() || 'ACTION';
+        let label = 'OPEN';
+        if (raw.includes('PROJECT')) label = 'VIEW';
+        else if (raw.includes('CONTACT')) label = 'CONTACT';
+        else if (raw.includes('SUBMIT') || raw.includes('SEND')) label = 'SEND';
+        else if (raw.length <= 8) label = raw;
+        setHoverState('button', label);
+        return;
+      }
+
+      if (target.closest('img, picture, [data-cursor-image], .gallery-item, .project-card')) {
+        setHoverState('image', 'ZOOM');
+        return;
+      }
+
+      const linkEl = target.closest('a[href], .nav-link');
+      if (linkEl) {
+        const text = linkEl.textContent?.trim().toUpperCase() || 'OPEN';
+        setHoverState('link', text.length > 0 && text.length <= 8 ? text : 'OPEN');
+        return;
+      }
+
+      setHoverState('none');
+    }
+
+    function setHoverState(type: string, labelTextVal = '') {
+      if (activeState === type && labelText?.textContent === labelTextVal) return;
+      activeState = type;
+
+      gsap.killTweensOf([frameEl, centerDot, bracketTL, bracketTR, bracketBL, bracketBR, labelBox]);
+
+      if (type === 'none') {
+        gsap.to(frameEl, { scaleX: 1, scaleY: 1, scale: 1, rotate: 0, duration: 0.22, ease: 'power2.out', overwrite: 'auto' });
+        gsap.to(centerDot, { scale: 1, borderRadius: '0px', opacity: 1, duration: 0.22, overwrite: 'auto' });
+        gsap.to([bracketTL, bracketTR, bracketBL, bracketBR], { x: 0, y: 0, duration: 0.22, overwrite: 'auto' });
+        gsap.to(labelBox, { opacity: 0, y: 4, duration: 0.18, overwrite: 'auto' });
+        return;
+      }
+
+      if (type === 'button') {
+        gsap.to(bracketTL, { x: 3, y: 3, duration: 0.18, overwrite: 'auto' });
+        gsap.to(bracketTR, { x: -3, y: 3, duration: 0.18, overwrite: 'auto' });
+        gsap.to(bracketBL, { x: 3, y: -3, duration: 0.18, overwrite: 'auto' });
+        gsap.to(bracketBR, { x: -3, y: -3, duration: 0.18, overwrite: 'auto' });
+        gsap.to(centerDot, { scale: 1.4, duration: 0.18, overwrite: 'auto' });
+        showLabel(labelTextVal);
+      } else if (type === 'image') {
+        gsap.to(frameEl, { scale: 1.2, duration: 0.22, ease: 'power2.out', overwrite: 'auto' });
+        gsap.to(centerDot, { scale: 1.35, duration: 0.18, overwrite: 'auto' });
+        showLabel(labelTextVal);
+      } else if (type === 'link') {
+        gsap.to(frameEl, { rotate: 8, duration: 0.18, ease: 'power2.out', overwrite: 'auto' });
+        gsap.to(centerDot, { scale: 1.2, duration: 0.18, overwrite: 'auto' });
+        showLabel(labelTextVal);
+      } else if (type === 'form') {
+        gsap.to(frameEl, { scaleX: 1.25, scaleY: 0.85, duration: 0.22, ease: 'power2.out', overwrite: 'auto' });
+        showLabel(labelTextVal);
+      } else if (type === 'contact') {
+        gsap.to(frameEl, { scale: 1.1, duration: 0.22, ease: 'power2.out', overwrite: 'auto' });
+        gsap.to(centerDot, { scale: 1.5, duration: 0.6, repeat: -1, yoyo: true, ease: 'sine.inOut', overwrite: 'auto' });
+        showLabel(labelTextVal);
+      }
+    }
+
+    function showLabel(text: string) {
+      if (labelText) labelText.textContent = text;
+      if (labelBox) gsap.to(labelBox, { opacity: 1, y: 0, duration: 0.18, overwrite: 'auto' });
+    }
+
+    document.addEventListener('mouseover', (e) => updateHoverState(e.target as HTMLElement), { passive: true, signal });
+    document.addEventListener('mouseout', (e) => updateHoverState((e as MouseEvent).relatedTarget as HTMLElement), { passive: true, signal });
+
+    window.addEventListener('mousedown', () => {
+      if (isClicking) return;
+      isClicking = true;
+
+      gsap.to([bracketTL, bracketTR, bracketBL, bracketBR], { scale: 0.6, duration: 0.08, ease: 'power2.out', overwrite: 'auto' });
+      gsap.to(centerDot, { backgroundColor: '#FFFFFF', scale: 1.6, duration: 0.06, overwrite: 'auto' });
+
+      if (scanlineEl) {
+        gsap.fromTo(scanlineEl, { opacity: 1, scaleX: 0 }, { scaleX: 1, opacity: 0, duration: 0.15, ease: 'power2.out', overwrite: 'auto' });
+      }
+
+      clickResetTimer = setTimeout(() => {
+        gsap.to([bracketTL, bracketTR, bracketBL, bracketBR], { scale: 1, duration: 0.1, ease: 'power2.out', overwrite: 'auto' });
+        gsap.to(centerDot, { backgroundColor: '#D63A1C', scale: 1, duration: 0.1, overwrite: 'auto' });
+        isClicking = false;
+      }, 140);
+    }, { signal });
+
+    function triggerIdleTelemetry() {
+      if (activeState !== 'none') return;
+
+      serialIndex = (serialIndex + 1) % serialCodes.length;
+      if (codeVal) codeVal.textContent = serialCodes[serialIndex];
+
+      const brackets = [bracketTL, bracketTR, bracketBL, bracketBR];
+      const randomBracket = brackets[Math.floor(Math.random() * brackets.length)];
+
+      if (idleAnimationTween) idleAnimationTween.kill();
+      idleAnimationTween = gsap.timeline();
+
+      if (randomBracket) {
+        idleAnimationTween.to(randomBracket, { opacity: 0.2, duration: 0.1, yoyo: true, repeat: 1 });
+      }
+      if (scanlineEl) {
+        idleAnimationTween.fromTo(scanlineEl, { opacity: 0.6, scaleX: 0 }, { scaleX: 1, opacity: 0, duration: 0.35, ease: 'power1.out' }, 0);
+      }
+      idleAnimationTween.to(centerDot, { scale: 1.3, duration: 0.2, yoyo: true, repeat: 1 }, 0);
+    }
+
+    function resetIdleTimer() {
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        triggerIdleTelemetry();
+        idleTimer = setTimeout(resetIdleTimer, 4000 + Math.random() * 4000);
+      }, 4000 + Math.random() * 4000);
+    }
+
+    resetIdleTimer();
+
+    w.__industrialLocatorCleanup = () => {
+      abortController.abort();
+      gsap.ticker.remove(tickerFn);
+      gsap.killTweensOf([frameEl, centerDot, bracketTL, bracketTR, bracketBL, bracketBR, labelBox, scanlineEl]);
+      if (clickResetTimer) clearTimeout(clickResetTimer);
+      if (idleTimer) clearTimeout(idleTimer);
+      if (idleAnimationTween) idleAnimationTween.kill();
+      document.documentElement.classList.remove('has-industrial-cursor');
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initIndustrialLocatorCursor, { once: true });
+  } else {
+    initIndustrialLocatorCursor();
+  }
+  w.__industrialLocatorPageLoadHandler = initIndustrialLocatorCursor;
+  document.addEventListener('astro:page-load', w.__industrialLocatorPageLoadHandler);
+</script>

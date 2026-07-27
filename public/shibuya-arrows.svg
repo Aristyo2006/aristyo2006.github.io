@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" width="1200" height="1600" fill="none">
+  <style>
+    .bg-dark { fill: #090909; }
+    .txt-red { fill: #D63A1C; font-family: 'Space Grotesk', monospace; font-weight: 900; }
+    .txt-white { fill: #F5F5F5; font-family: 'Space Grotesk', monospace; font-weight: 700; }
+    .txt-sub { fill: #888888; font-family: 'Space Grotesk', monospace; font-size: 10px; }
+  </style>
+
+  <!-- Dark Canvas -->
+  <rect width="1200" height="1600" fill="#090909" />
+
+  <!-- Sheet Header -->
+  <g transform="translate(60, 80)">
+    <rect x="0" y="0" width="180" height="30" fill="#D63A1C" />
+    <text x="12" y="20" font-family="'Space Grotesk', monospace" font-size="14" font-weight="900" fill="#F5F5F5" letter-spacing="2">SHIBUYA PUNK // VECTOR</text>
+    <text x="0" y="65" font-family="'Bebas Neue', 'Space Grotesk', sans-serif" font-size="44" font-weight="900" fill="#F5F5F5" letter-spacing="4">JET SET DIRECTIONAL ARROW COLLECTION</text>
+    <text x="0" y="90" font-family="'Space Grotesk', monospace" font-size="11" font-weight="700" fill="#D63A1C" letter-spacing="2">INDUSTRIAL WAYFINDING • EDITORIAL GRAPHICS • UNDERGROUND METRO SYSTEM</text>
+    <line x1="0" y1="110" x2="1080" y2="110" stroke="#1C1C1C" stroke-width="2" />
+  </g>
+
+  <!-- Arrow 1: Long Navigation Arrow -->
+  <g transform="translate(60, 240)">
+    <text x="0" y="-15" class="txt-red" font-size="12">01 // LONG NAVIGATION ARROW</text>
+    <g transform="translate(0, 0)">
+      <polygon points="10,18 490,18 570,58 490,98 10,98 50,58" fill="#090909" transform="translate(6, 6)" />
+      <polygon points="10,14 490,14 570,54 490,94 10,94 50,54" fill="#D63A1C" />
+      <polygon points="65,20 470,20 545,54 470,88 65,88 100,54" fill="#F5F5F5" />
+      <polygon points="95,28 450,28 515,54 450,80 95,80 125,54" fill="#090909" />
+      <polyline points="5,8 500,8 585,54 500,102 5,102" stroke="#F5F5F5" stroke-width="2" stroke-dasharray="12 6 3 6" />
+      <g fill="#F5F5F5" transform="translate(135, 42)">
+        <rect x="0" y="0" width="4" height="24" /><rect x="7" y="0" width="2" height="24" /><rect x="12" y="0" width="6" height="24" /><rect x="21" y="0" width="3" height="24" /><rect x="27" y="0" width="8" height="24" /><rect x="38" y="0" width="2" height="24" /><rect x="43" y="0" width="5" height="24" />
+      </g>
+      <text x="195" y="55" font-family="'Space Grotesk', monospace" font-size="14" font-weight="900" fill="#D63A1C" letter-spacing="3">NAV // 01 • 渋谷区</text>
+      <text x="195" y="70" font-family="'Space Grotesk', monospace" font-size="9" font-weight="700" fill="#F5F5F5" letter-spacing="1">SYS_REF_#35.6580N • SPEED: 100%</text>
+      <polygon points="530,54 495,38 502,54 495,70" fill="#D63A1C" />
+      <polygon points="555,54 525,35 530,54 525,73" fill="#F5F5F5" />
+    </g>
+  </g>
+
+  <!-- Arrow 2: Small Pointer Arrows -->
+  <g transform="translate(700, 240)">
+    <text x="0" y="-15" class="txt-red" font-size="12">02 // SMALL POINTER ARROW</text>
+    <g transform="translate(0, 10)">
+      <polygon points="5,8 140,8 210,45 140,82 5,82 35,45" fill="#090909" transform="translate(4, 4)" />
+      <polygon points="5,8 140,8 210,45 140,82 5,82 35,45" fill="#D63A1C" stroke="#F5F5F5" stroke-width="2" />
+      <polygon points="45,18 130,18 185,45 130,72 45,72 65,45" fill="#090909" />
+      <polygon points="85,26 145,26 175,45 145,64 85,64 100,45" fill="#F5F5F5" />
+      <text x="52" y="50" font-family="'Space Grotesk', monospace" font-size="13" font-weight="900" fill="#D63A1C">次へ</text>
+    </g>
+  </g>
+
+  <!-- Arrow 3: Folded Arrow -->
+  <g transform="translate(60, 440)">
+    <text x="0" y="-15" class="txt-red" font-size="12">03 // FOLDED ORIGAMI ARROW</text>
+    <g transform="translate(0, 10)">
+      <polygon points="10,130 110,130 180,30 80,30" fill="#1C1C1C" stroke="#F5F5F5" stroke-width="1.5" />
+      <polygon points="80,30 200,30 270,130 150,130" fill="#D63A1C" />
+      <polygon points="150,130 250,130 290,70 230,20 180,80" fill="#F5F5F5" stroke="#090909" stroke-width="2.5" />
+      <line x1="80" y1="30" x2="150" y2="130" stroke="#090909" stroke-width="4" opacity="0.6" />
+      <line x1="180" y1="80" x2="250" y2="130" stroke="#090909" stroke-width="4" opacity="0.6" />
+      <text x="95" y="70" font-family="'Space Grotesk', monospace" font-size="12" font-weight="900" fill="#F5F5F5" transform="rotate(-40 95 70)">SYS_FOLD_03</text>
+      <text x="180" y="105" font-family="'Space Grotesk', monospace" font-size="11" font-weight="900" fill="#D63A1C" transform="rotate(40 180 105)">折曲 // 90°</text>
+    </g>
+  </g>
+
+  <!-- Arrow 4 & 5: Double & Triple Arrows -->
+  <g transform="translate(480, 440)">
+    <text x="0" y="-15" class="txt-red" font-size="12">04 &amp; 05 // DOUBLE &amp; TRIPLE CHEVRONS</text>
+    <g transform="translate(0, 10)">
+      <!-- Double -->
+      <polygon points="10,15 90,15 150,60 90,105 10,105 50,60" fill="#D63A1C" stroke="#F5F5F5" stroke-width="1.5" />
+      <polygon points="90,15 170,15 230,60 170,105 90,105 130,60" fill="#F5F5F5" stroke="#090909" stroke-width="2" />
+      <polygon points="115,30 155,30 195,60 155,90 115,90 140,60" fill="#D63A1C" />
+      <text x="125" y="65" font-family="'Space Grotesk', monospace" font-size="11" font-weight="900" fill="#F5F5F5">#02</text>
+    </g>
+    <g transform="translate(260, 10)">
+      <!-- Triple -->
+      <polygon points="10,18 60,18 100,50 60,82 10,82 35,50" fill="#1C1C1C" stroke="#F5F5F5" stroke-width="1" />
+      <polygon points="70,18 120,18 160,50 120,82 70,82 95,50" fill="#D63A1C" stroke="#F5F5F5" stroke-width="1" />
+      <polygon points="130,18 190,18 240,50 190,82 130,82 160,50" fill="#F5F5F5" stroke="#090909" stroke-width="2" />
+      <polygon points="152,30 185,30 215,50 185,70 152,70 172,50" fill="#D63A1C" />
+    </g>
+  </g>
+
+  <!-- Arrow 6 & 8: Vertical & Scroll Arrows -->
+  <g transform="translate(60, 680)">
+    <text x="0" y="-15" class="txt-red" font-size="12">06 &amp; 08 // VERTICAL &amp; SCROLL INDICATORS</text>
+    <g transform="translate(40, 20)">
+      <line x1="45" y1="10" x2="45" y2="240" stroke="#D63A1C" stroke-width="3" stroke-dasharray="8 4" />
+      <rect x="20" y="20" width="50" height="30" fill="#1C1C1C" stroke="#F5F5F5" stroke-width="1.5" />
+      <text x="27" y="38" font-family="'Space Grotesk', monospace" font-size="10" font-weight="900" fill="#F5F5F5">SUBWAY</text>
+      <rect x="25" y="100" width="40" height="50" fill="#D63A1C" stroke="#F5F5F5" stroke-width="1.5" />
+      <text x="32" y="122" font-family="'Space Grotesk', monospace" font-size="11" font-weight="900" fill="#F5F5F5">地下</text>
+      <text x="30" y="140" font-family="'Space Grotesk', monospace" font-size="9" font-weight="700" fill="#090909">DOWN</text>
+      <polygon points="10,190 80,190 45,270" fill="#F5F5F5" stroke="#090909" stroke-width="3" />
+      <polygon points="22,196 68,196 45,250" fill="#D63A1C" />
+    </g>
+    <g transform="translate(240, 20)">
+      <rect x="40" y="10" width="24" height="170" fill="#1C1C1C" stroke="#F5F5F5" stroke-width="1.5" />
+      <rect x="46" y="30" width="12" height="45" fill="#D63A1C" />
+      <polygon points="10,180 94,180 52,240" fill="#D63A1C" stroke="#F5F5F5" stroke-width="2.5" />
+      <polygon points="26,188 78,188 52,225" fill="#F5F5F5" />
+      <text x="18" y="90" font-family="'Space Grotesk', monospace" font-size="10" font-weight="900" fill="#F5F5F5" writing-mode="vertical-rl">スクロール // SCROLL</text>
+    </g>
+  </g>
+
+  <!-- Arrow 7 & 10: Corner & Diagonal Arrows -->
+  <g transform="translate(500, 680)">
+    <text x="0" y="-15" class="txt-red" font-size="12">07 &amp; 10 // CORNER &amp; DIAGONAL WAYFINDING</text>
+    <g transform="translate(0, 20)">
+      <path d="M 30 180 L 30 60 L 120 60 L 120 30 L 180 80 L 120 130 L 120 100 L 60 100 L 60 180 Z" fill="#F5F5F5" stroke="#090909" stroke-width="3" />
+      <path d="M 42 165 L 42 72 L 128 72 L 128 50 L 165 80 L 128 110 L 128 88 L 72 88 L 72 165 Z" fill="#D63A1C" />
+      <text x="36" y="48" font-family="'Space Grotesk', monospace" font-size="11" font-weight="900" fill="#D63A1C">CORNER // 90°</text>
+    </g>
+    <g transform="translate(260, 20)">
+      <polygon points="20,180 60,180 180,60 180,20 140,20 20,140" fill="#D63A1C" stroke="#F5F5F5" stroke-width="2" />
+      <polygon points="100,20 190,20 190,110 160,75 75,160 45,130 130,45" fill="#F5F5F5" stroke="#090909" stroke-width="2.5" />
+      <text x="140" y="50" font-family="'Space Grotesk', monospace" font-size="14" font-weight="900" fill="#D63A1C">#89</text>
+    </g>
+  </g>
+
+  <!-- Arrow 9, 11 & 12: Section Transition, Wide Block & Thin Technical -->
+  <g transform="translate(60, 1080)">
+    <text x="0" y="-15" class="txt-red" font-size="12">09, 11 &amp; 12 // SECTION TRANSITION, WIDE BLOCK &amp; THIN TECH</text>
+    <!-- Section Transition -->
+    <g transform="translate(0, 10)">
+      <polygon points="10,10 380,10 490,70 380,130 10,130 70,70" fill="#090909" stroke="#F5F5F5" stroke-width="2.5" />
+      <g clip-path="url(#sheet-trans-clip)">
+        <polygon points="10,10 380,10 490,70 380,130 10,130 70,70" fill="#D63A1C" />
+        <path d="M -20,0 L 40,160 M 40,0 L 100,160 M 100,0 L 160,160 M 160,0 L 220,160 M 220,0 L 280,160 M 280,0 L 340,160 M 340,0 L 400,160 M 400,0 L 460,160" stroke="#090909" stroke-width="20" />
+      </g>
+      <polygon points="90,28 350,28 420,70 350,112 90,112 135,70" fill="#F5F5F5" stroke="#090909" stroke-width="2.5" />
+      <text x="150" y="62" font-family="'Space Grotesk', monospace" font-size="16" font-weight="900" fill="#090909" letter-spacing="3">SECTION TRANSITION</text>
+      <text x="150" y="88" font-family="'Space Grotesk', monospace" font-size="12" font-weight="900" fill="#D63A1C" letter-spacing="1">CH.02 → CH.03 // 次の章へ進む</text>
+      <clipPath id="sheet-trans-clip">
+        <polygon points="10,10 380,10 490,70 380,130 10,130 70,70" />
+      </clipPath>
+    </g>
+
+    <!-- Wide Block -->
+    <g transform="translate(540, 10)">
+      <polygon points="10,10 350,10 450,70 350,130 10,130" fill="#090909" stroke="#F5F5F5" stroke-width="2.5" />
+      <polygon points="25,22 335,22 420,70 335,118 25,118" fill="#D63A1C" />
+      <rect x="45" y="38" width="180" height="64" fill="#F5F5F5" stroke="#090909" stroke-width="2" />
+      <text x="58" y="65" font-family="'Space Grotesk', monospace" font-size="12" font-weight="900" fill="#D63A1C">[ DANGER // 高電圧 ]</text>
+      <text x="58" y="86" font-family="'Space Grotesk', monospace" font-size="13" font-weight="900" fill="#090909">WAYFINDING_SYS</text>
+      <polygon points="350,40 395,70 350,100" fill="#F5F5F5" />
+    </g>
+
+    <!-- Thin Tech -->
+    <g transform="translate(0, 180)">
+      <line x1="10" y1="35" x2="1000" y2="35" stroke="#F5F5F5" stroke-width="2" />
+      <path d="M 30,25 L 30,45 M 70,28 L 70,42 M 110,25 L 110,45 M 150,28 L 150,42 M 190,25 L 190,45 M 230,28 L 230,42 M 270,25 L 270,45 M 310,28 L 310,42 M 350,25 L 350,45 M 390,28 L 390,42 M 430,25 L 430,45 M 470,28 L 470,42 M 510,25 L 510,45 M 550,28 L 550,42 M 590,25 L 590,45 M 630,28 L 630,42 M 670,25 L 670,45 M 710,28 L 710,42 M 750,25 L 750,45 M 790,28 L 790,42 M 830,25 L 830,45 M 870,28 L 870,42 M 910,25 L 910,45" stroke="#D63A1C" stroke-width="1.5" />
+      <polygon points="970,18 1030,35 970,52 985,35" fill="#D63A1C" stroke="#F5F5F5" stroke-width="1.5" />
+      <text x="30" y="20" font-family="'Space Grotesk', monospace" font-size="11" font-weight="900" fill="#F5F5F5">LOC_35.6580N // 139.7016E • PRECISION WAYFINDING SYSTEM</text>
+    </g>
+  </g>
+
+</svg>

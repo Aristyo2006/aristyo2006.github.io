@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import logoImg from '@/assets/images/logo2_w.png';
+---
+
+<footer
+  class="relative bg-[var(--color-steel-black)]/50 pt-12 pb-6 border-t-2 border-[var(--color-chalk-white)] overflow-hidden jsr-bg-halftone"
+  role="contentinfo"
+>
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+
+    <!-- Top section -->
+    <div class="flex flex-col items-start justify-between gap-8 border-b-2 border-[var(--color-void-black)] pb-8 sm:flex-row sm:items-center">
+      <div class="flex flex-col">
+        <a
+          href="#hero"
+          class="flex items-center gap-3 hover:opacity-85 transition-opacity"
+          aria-label="Back to top"
+        >
+          <Image src={logoImg} alt="Logo" class="h-16 sm:h-20 w-auto object-contain" />
+        </a>
+        <span class="font-mono text-[8px] font-bold text-[var(--color-warm-gray)] uppercase tracking-[0.2em] mt-1.5">// SHIBUYA NET</span>
+      </div>
+
+      <nav aria-label="Footer navigation">
+        <ul class="flex flex-wrap gap-4 font-space text-[10px] font-black uppercase tracking-[0.15em] text-[var(--color-warm-gray)]" role="list">
+          <li><a href="#hero" class="block px-3 py-1 hover:bg-[var(--color-red-blast)] hover:text-[var(--color-void-black)] transition-colors clip-parallelogram hover-snap">Top</a></li>
+          <li><a href="#profile" class="block px-3 py-1 hover:bg-[var(--color-ember-orange)] hover:text-[var(--color-void-black)] transition-colors clip-parallelogram hover-snap">Profile</a></li>
+          <li><a href="#projects" class="block px-3 py-1 hover:bg-[var(--color-burnt-crimson)] hover:text-[var(--color-void-black)] transition-colors clip-parallelogram hover-snap">Projects</a></li>
+          <li><a href="#gallery" class="block px-3 py-1 hover:bg-[var(--color-chalk-white)] hover:text-[var(--color-void-black)] transition-colors clip-parallelogram hover-snap">Gallery</a></li>
+          <li><a href="#contact" class="block px-3 py-1 hover:bg-[var(--color-red-blast)] hover:text-[var(--color-void-black)] transition-colors clip-parallelogram hover-snap">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button
+        onclick="import('gsap').then(m => { m.gsap.to(window, { scrollTo: { y: 0 }, duration: 0.8, ease: 'power2.inOut' }) })"
+        class="border-2 border-[var(--color-chalk-white)] bg-[var(--color-void-black)] px-6 py-2 font-space text-xs font-black tracking-widest text-[var(--color-chalk-white)] transition-all hover:bg-[var(--color-chalk-white)] hover:text-[var(--color-void-black)] hover:border-[var(--color-chalk-white)] clip-parallelogram hover-snap"
+        aria-label="Back to top"
+      >
+        ↑ TOP
+      </button>
+    </div>
+
+    <!-- Bottom section -->
+    <div class="mt-6 flex flex-col items-start justify-between gap-4 border-t border-[var(--color-void-black)] pt-6 sm:flex-row sm:items-center">
+      <p class="font-inter font-bold text-xs text-[var(--color-void-black)] bg-[var(--color-warm-gray)] px-3 py-1 clip-parallelogram">
+        &copy; <span id="current-year"></span> AR.wrks
+      </p>
+
+      <!-- Tokyo time indicator -->
+      <div class="flex items-center gap-3 font-mono text-[10px] font-bold text-[var(--color-warm-gray)] uppercase tracking-wider">
+        <span>TOKYO // <span id="tokyo-time">00:00:00 JST</span></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-red-blast)] animate-pulse"></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const yearEl = document.getElementById('current-year');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  function updateTokyoTime() {
+    const tokyoEl = document.getElementById('tokyo-time');
+    if (!tokyoEl) return;
+    const options = {
+      timeZone: 'Asia/Tokyo',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    } as const;
+    const formatter = new Intl.DateTimeFormat('en-US', options);
+    tokyoEl.textContent = formatter.format(new Date()) + ' JST';
+  }
+  
+  updateTokyoTime();
+  setInterval(updateTokyoTime, 1000);
+</script>

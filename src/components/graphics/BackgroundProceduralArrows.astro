@@ -1,0 +1,204 @@
+---
+// BackgroundProceduralArrows.astro: Ambient Procedural Navigation Path
+// Massive bold zigzag — renders above section backgrounds, below overlays/nav
+---
+
+<div
+  id="ambient-nav-path-layer"
+  class="absolute top-0 left-0 w-full z-[3] pointer-events-none select-none overflow-hidden"
+  aria-hidden="true"
+  style="opacity: 1; height: 100%;"
+>
+  <svg
+    id="ambient-path-svg"
+    class="w-full h-full"
+    fill="none"
+    style="display: block;"
+  ></svg>
+</div>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const w = window as any;
+  if (w.__ambientPathCleanup) {
+    w.__ambientPathCleanup();
+  }
+
+  const abortController = new AbortController();
+  const signal = abortController.signal;
+  let scrollTween: gsap.core.Tween | null = null;
+  let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
+  let activeSvg: SVGSVGElement | null = null;
+
+  function clearAmbientNavPath() {
+    if (scrollTween) {
+      if (scrollTween.scrollTrigger) scrollTween.scrollTrigger.kill();
+      scrollTween.kill();
+      scrollTween = null;
+    }
+
+    if (activeSvg) {
+      activeSvg.replaceChildren();
+    }
+  }
+
+  function initAmbientNavPath() {
+    clearAmbientNavPath();
+
+    const svg = document.getElementById('ambient-path-svg') as SVGSVGElement | null;
+    const layer = document.getElementById('ambient-nav-path-layer');
+    if (!svg || !layer) return;
+
+    activeSvg = svg;
+    svg.replaceChildren();
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      layer.style.height = '0px';
+      return;
+    }
+
+    layer.style.height = '0px';
+
+    const NS = 'http://www.w3.org/2000/svg';
+    const W = document.documentElement.clientWidth;
+    const H = document.documentElement.scrollHeight;
+    if (W < 1 || H < 1) return;
+
+    layer.style.height = `${H}px`;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+    const waypoints: { x: number; y: number }[] = [];
+    let curX = W * 0.15 + Math.random() * W * 0.7;
+    let curY = 0;
+
+    waypoints.push({ x: Math.round(curX), y: 0 });
+
+    while (curY < H) {
+      const stepY = Math.random() < 0.3 ? 80 + Math.random() * 80 : 250 + Math.random() * 200;
+      curY = Math.min(curY + stepY, H);
+
+      const roll = Math.random();
+      let newX: number;
+
+      if (roll < 0.4) {
+        newX = curX > W / 2
+          ? W * 0.02 + Math.random() * W * 0.15
+          : W * 0.83 + Math.random() * W * 0.15;
+      } else if (roll < 0.65) {
+        const dir = Math.random() > 0.5 ? 1 : -1;
+        newX = curX + dir * (W * 0.35 + Math.random() * W * 0.2);
+      } else if (roll < 0.85) {
+        const dir = Math.random() > 0.5 ? 1 : -1;
+        newX = curX + dir * (W * 0.08 + Math.random() * W * 0.12);
+      } else {
+        newX = curX;
+      }
+
+      newX = Math.max(W * 0.02, Math.min(W * 0.98, newX));
+
+      if (Math.abs(newX - curX) < W * 0.1 && roll < 0.85) {
+        newX = curX > W / 2
+          ? W * 0.05 + Math.random() * W * 0.2
+          : W * 0.75 + Math.random() * W * 0.2;
+        newX = Math.max(W * 0.02, Math.min(W * 0.98, newX));
+      }
+
+      curX = newX;
+      waypoints.push({ x: Math.round(curX), y: Math.round(curY) });
+    }
+
+    waypoints[waypoints.length - 1].y = H;
+
+    const waypointLengths: number[] = [0];
+    let currentLen = 0;
+    for (let i = 1; i < waypoints.length; i++) {
+      const p1 = waypoints[i - 1];
+      const p2 = waypoints[i];
+      const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+      currentLen += dist;
+      waypointLengths.push(currentLen);
+    }
+
+    function getLengthAtY(targetY: number) {
+      if (targetY <= 0) return 0;
+      if (targetY >= H) return currentLen;
+      for (let i = 1; i < waypoints.length; i++) {
+        if (targetY <= waypoints[i].y) {
+          const p1 = waypoints[i - 1];
+          const p2 = waypoints[i];
+          const t = (targetY - p1.y) / (p2.y - p1.y);
+          return waypointLengths[i - 1] + t * (waypointLengths[i] - waypointLengths[i - 1]);
+        }
+      }
+      return currentLen;
+    }
+
+    const d = waypoints.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
+    const mainPath = document.createElementNS(NS, 'path');
+    mainPath.setAttribute('d', d);
+    mainPath.setAttribute('stroke', '#FF0000');
+    mainPath.setAttribute('stroke-width', '55');
+    mainPath.setAttribute('stroke-linecap', 'square');
+    mainPath.setAttribute('stroke-linejoin', 'miter');
+    mainPath.setAttribute('fill', 'none');
+    svg.appendChild(mainPath);
+
+    const exactTotalLength = mainPath.getTotalLength();
+    mainPath.style.strokeDasharray = `${exactTotalLength + 100}`;
+    mainPath.style.strokeDashoffset = `${exactTotalLength + 100}`;
+    mainPath.style.willChange = 'stroke-dashoffset';
+
+    let pathRafPending = false;
+    const proxy = { p: 0 };
+    scrollTween = gsap.to(proxy, {
+      p: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.25,
+      },
+      onUpdate: () => {
+        if (pathRafPending) return;
+
+        pathRafPending = true;
+        requestAnimationFrame(() => {
+          const viewportH = window.innerHeight;
+          let targetY = proxy.p * (H - viewportH) + viewportH * 0.65;
+          if (proxy.p > 0.95) {
+            const endProgress = (proxy.p - 0.95) / 0.05;
+            targetY = targetY + endProgress * (H - targetY);
+          }
+          const rawLen = getLengthAtY(targetY);
+          const curLen = (rawLen / currentLen) * exactTotalLength;
+          mainPath.style.strokeDashoffset = String(exactTotalLength - curLen);
+          pathRafPending = false;
+        });
+      },
+    });
+  }
+
+  function handleResize() {
+    if (resizeTimeout) clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(initAmbientNavPath, 250);
+  }
+
+  w.__ambientPathCleanup = () => {
+    abortController.abort();
+    if (resizeTimeout) clearTimeout(resizeTimeout);
+    clearAmbientNavPath();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAmbientNavPath, { once: true, signal });
+  } else {
+    initAmbientNavPath();
+  }
+  document.addEventListener('astro:page-load', initAmbientNavPath, { signal });
+  window.addEventListener('resize', handleResize, { passive: true, signal });
+</script>

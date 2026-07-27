@@ -1,0 +1,29 @@
+[2m21.20.20[22m [34m[types][39m Generated [2m3ms[22m
+[2m21.20.20[22m [34m[content][39m Syncing content
+[2m21.20.20[22m [34m[content][39m Synced content
+[2m21.20.20[22m [34m[vite][39m Port 4321 is in use, trying another one...
+
+[42m[1m astro [22m[49m [32mv5.18.2[39m [2mready in[22m 794 [2mms[22m
+
+[2m┃[22m Local    [36mhttp://127.0.0.1:4322/shibuya-punk-portfolio[39m
+
+[2m21.20.20[22m [32mwatching for file changes...[39m
+[2m22.15.42[22m [34m[200][39m / [2m82ms[22m
+[2m00.40.55[22m Configuration file updated. Restarting...
+[2m00.40.57[22m [34m[content][39m Syncing content
+[2m00.40.57[22m [34m[content][39m Astro config changed
+[2m00.40.57[22m [34m[content][39m Clearing content store
+[2m00.40.57[22m [34m[content][39m Synced content
+[2m00.40.57[22m [34m[types][39m Generated [2m1.96s[22m
+[2m00.40.57[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m01.15.02[22m [34m[200][39m / [2m234ms[22m
+[2m01.15.02[22m [34m[vite][39m [32m✨ new dependencies optimized: [33mlenis[32m[39m
+[2m01.15.02[22m [34m[vite][39m [32m✨ optimized dependencies changed. reloading[39m
+[2m01.15.03[22m [34m[200][39m / [2m35ms[22m
+[2m01.15.06[22m [34m[watch][39m .astro/types.d.ts
+[2m01.15.06[22m [34m[watch][39m .astro/types.d.ts
+[2m01.15.06[22m [34m[watch][39m .astro/data-store.json
+[2m01.15.06[22m [34m[watch][39m .astro/data-store.json
+[2m01.15.07[22m [34m[200][39m / [2m133ms[22m
+[2m01.16.07[22m [34m[watch][39m src/components/hero/HeroSection.astro
+[2m01.16.07[22m [34m[watch][39m src/components/hero/HeroSection.astro
