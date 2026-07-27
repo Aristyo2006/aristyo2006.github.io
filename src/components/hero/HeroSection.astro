@@ -225,6 +225,7 @@ import heroImg from '@assets/images/_DSC8723.jpg';
     }
 
     function updateGridPosition() {
+      if (!gridContainer) return;
       currentX += (targetX - currentX) * 0.18;
       currentY += (targetY - currentY) * 0.18;
 

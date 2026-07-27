@@ -27,3 +27,135 @@
 [2m01.15.07[22m [34m[200][39m / [2m133ms[22m
 [2m01.16.07[22m [34m[watch][39m src/components/hero/HeroSection.astro
 [2m01.16.07[22m [34m[watch][39m src/components/hero/HeroSection.astro
+[2m01.26.04[22m [34m[watch][39m .github/workflows/deploy.yml
+[2m01.26.04[22m [34m[watch][39m .github/workflows/deploy.yml
+[2m01.26.04[22m [34m[watch][39m README.md
+[2m01.26.04[22m [34m[watch][39m README.md
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[2m01.26.04[22m Configuration file removed. Restarting...
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[2m01.26.04[22m [34m[vite][39m changed tsconfig file detected: C:/laragon/www/shibuya-punk-portfolio/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.04[22m [WARN][39m Missing pages directory: src/pages
+[2m01.26.04[22m [34m[watch][39m package.json
+[2m01.26.04[22m [34m[watch][39m package.json
+[2m01.26.04[22m [34m[watch][39m public/favicon.svg
+[2m01.26.04[22m [34m[watch][39m public/favicon.svg
+[2m01.26.04[22m [34m[watch][39m public/shibuya-arrows.svg
+[2m01.26.04[22m [34m[watch][39m public/shibuya-arrows.svg
+[2m01.26.04[22m [34m[watch][39m astro.config.mjs
+[2m01.26.04[22m [34m[watch][39m astro.config.mjs
+[2m01.26.04[22m [34m[watch][39m src/assets/images/instagram.svg
+[2m01.26.04[22m [34m[watch][39m src/assets/images/instagram.svg
+[2m01.26.04[22m [34m[watch][39m src/assets/images/invertocat.svg
+[2m01.26.04[22m [34m[watch][39m src/assets/images/profile.JPG
+[2m01.26.05[22m [34m[watch][39m src/assets/images/profile.JPG
+[2m01.26.05[22m [34m[watch][39m src/assets/images/_DSC5914.JPG
+[2m01.26.05[22m [34m[watch][39m src/assets/images/_DSC5914.JPG
+[2m01.26.05[22m [34m[watch][39m src/components/FullpageSnap.astro
+[2m01.26.05[22m [34m[watch][39m src/components/FullpageSnap.astro
+[2m01.26.05[22m [34m[watch][39m src/components/IndustrialLocatorCursor.astro
+[2m01.26.05[22m [34m[watch][39m src/components/Navigation.astro
+[2m01.26.05[22m [34m[watch][39m src/components/Navigation.astro
+[2m01.26.05[22m [34m[watch][39m src/components/ScrollSignature.astro
+[2m01.26.05[22m [34m[watch][39m src/components/ScrollSignature.astro
+[2m01.26.05[22m [34m[watch][39m src/components/arrows/ShibuyaArrow.astro
+[2m01.26.05[22m [34m[watch][39m src/components/arrows/ShibuyaArrow.astro
+[2m01.26.05[22m [34m[watch][39m src/components/contact/ContactSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/contact/ContactSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/footer/FooterSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/footer/FooterSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/gallery/GallerySection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/gallery/GallerySection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/graphics/BackgroundProceduralArrows.astro
+[2m01.26.05[22m [34m[watch][39m src/components/graphics/BackgroundProceduralArrows.astro
+[2m01.26.05[22m [34m[watch][39m src/components/marquee/MarqueeSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/marquee/MarqueeSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/hero/HeroSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/hero/HeroSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/stats/StatsSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/stats/StatsSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/profile/ProfileSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/profile/ProfileSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/projects/FeaturedProject.astro
+[2m01.26.05[22m [34m[watch][39m src/components/projects/FeaturedProject.astro
+[2m01.26.05[22m [34m[watch][39m src/components/projects/ProjectsSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/projects/ProjectsSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/skills/SkillsSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/skills/SkillsSection.astro
+[2m01.26.05[22m [34m[watch][39m src/components/SmoothScroll.astro
+[2m01.26.05[22m [34m[watch][39m src/components/SmoothScroll.astro
+[2m01.26.05[22m [34m[watch][39m src/layouts/BaseLayout.astro
+[2m01.26.05[22m [34m[watch][39m src/layouts/BaseLayout.astro
+[2m01.26.05[22m [34m[watch][39m src/pages/arrows.astro
+[2m01.26.05[22m [34m[watch][39m src/pages/arrows.astro
+[2m01.26.05[22m [34m[watch][39m src/pages/index.astro
+[2m01.26.05[22m [34m[watch][39m src/pages/index.astro
+[2m01.26.05[22m [34m[watch][39m /src/styles/global.css
+[2m01.26.05[22m [34m[watch][39m src/utils/scripts.astro
+[2m01.26.05[22m [34m[watch][39m src/utils/scripts.astro
+[2m01.26.05[22m [34m[watch][39m tsconfig.json
+[2m01.26.05[22m [34m[watch][39m tsconfig.json
+[2m01.26.05[22m [34m[watch][39m src/env.d.ts
+[2m01.26.05[22m [34m[watch][39m src/env.d.ts
+[33m[1m01.26.05[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.05[22m [WARN][39m Missing pages directory: src/pages
+[2m01.26.05[22m [34m[content][39m Syncing content
+[2m01.26.05[22m [34m[content][39m Synced content
+[2m01.26.05[22m [34m[types][39m Generated [2m476ms[22m
+[2m01.26.05[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m01.26.05[22m [34m[vite][39m Port 4321 is in use, trying another one...
+[33m[1m01.26.05[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.23[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.50[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.50[22m [WARN][39m Missing pages directory: src/pages
+[2m01.26.50[22m Configuration file added. Restarting...
+[33m[1m01.26.50[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.50[22m [WARN][39m Missing pages directory: src/pages
+[33m[1m01.26.50[22m [WARN][39m Missing pages directory: src/pages
+[2m01.26.51[22m [34m[vite][39m changed tsconfig file detected: C:/laragon/www/shibuya-punk-portfolio/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2m01.26.51[22m [34m[content][39m Syncing content
+[2m01.26.51[22m [34m[content][39m Synced content
+[2m01.26.51[22m [34m[types][39m Generated [2m720ms[22m
+[2m01.26.51[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m01.26.51[22m [34m[vite][39m Port 4321 is in use, trying another one...

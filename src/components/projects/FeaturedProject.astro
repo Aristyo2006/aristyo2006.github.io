@@ -196,7 +196,7 @@ import featuredImg from '@assets/images/LELEMETER.jpg';
             const timer = setInterval(() => {
               lelemeterTitle.textContent = targetText
                 .split('')
-                .map((char, charIdx) => {
+                .map((_char, charIdx) => {
                   if (charIdx < Math.floor(frame / 3)) return targetText[charIdx];
                   return cyberChars[Math.floor(Math.random() * cyberChars.length)];
                 })
@@ -221,6 +221,7 @@ import featuredImg from '@assets/images/LELEMETER.jpg';
     let isMouseOver = false;
 
     function updateGridPosition() {
+      if (!gridContainer) return;
       currentX += (targetX - currentX) * 0.18;
       currentY += (targetY - currentY) * 0.18;
 

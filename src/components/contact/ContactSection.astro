@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import instagramSvg from '@assets/images/instagram.svg';
 import invertocatSvg from '@assets/images/invertocat.svg';
 ---
 
@@ -290,6 +289,7 @@ import invertocatSvg from '@assets/images/invertocat.svg';
 
     if (section && gridContainer) {
       function updateGridPosition() {
+        if (!gridContainer) return;
         currentX += (targetX - currentX) * 0.18;
         currentY += (targetY - currentY) * 0.18;
 
