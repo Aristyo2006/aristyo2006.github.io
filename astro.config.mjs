@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://yourusername.github.io',
-  base: '/shibuya-punk-portfolio',
+  site: 'https://aristyo2006.github.io',
+  base: '/',
   vite: {
     plugins: [tailwindcss()],
   },
